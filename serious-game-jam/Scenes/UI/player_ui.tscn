@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://xg3s67a0ntan"]
+
+[ext_resource type="Script" uid="uid://cdecxnaal23lf" path="res://Scripts/UI/player_ui.gd" id="1_xnwvs"]
+
+[node name="PlayerUI" type="Control" unique_id=1040131706]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xnwvs")
+
+[node name="SpinChair" type="Button" parent="." unique_id=1533500153]
+layout_mode = 1
+offset_left = 28.0
+offset_top = 16.0
+offset_right = 155.0
+offset_bottom = 84.0
+text = "Spin Chair"
+
+[node name="SpinAmount" type="LineEdit" parent="." unique_id=619872378]
+layout_mode = 0
+offset_left = 159.0
+offset_top = 16.0
+offset_right = 329.0
+offset_bottom = 84.0
+placeholder_text = "Ex) 360.0"
+
+[node name="MoneyLabel" type="RichTextLabel" parent="." unique_id=47755402]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -181.0
+offset_top = 21.0
+offset_right = -25.0
+offset_bottom = 61.0
+grow_horizontal = 0
+
+[connection signal="pressed" from="SpinChair" to="." method="_on_spin_chair_pressed"]

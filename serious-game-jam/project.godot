@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="Serious Game Jam"
+run/main_scene="uid://cvayn0nuxxhxx"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Global="*uid://d3d4322qrn8l8"
 
 [display]
 

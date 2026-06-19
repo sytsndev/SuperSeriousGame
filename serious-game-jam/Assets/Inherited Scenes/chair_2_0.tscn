@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://buxiigsrjj7vo"]
+
+[ext_resource type="PackedScene" uid="uid://ufwqfvcx0vx2" path="res://Assets/WIP/Chair2.0.glb" id="1_sgdp5"]
+
+[node name="Chair2_0" unique_id=694779403 instance=ExtResource("1_sgdp5")]

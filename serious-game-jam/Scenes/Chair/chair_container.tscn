@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://bror5epie35fx"]
+
+[ext_resource type="PackedScene" uid="uid://ccu07vrfx3awb" path="res://Scenes/Chair/chair.tscn" id="2_776ly"]
+[ext_resource type="PackedScene" uid="uid://xg3s67a0ntan" path="res://Scenes/UI/player_ui.tscn" id="3_6aruv"]
+[ext_resource type="PackedScene" uid="uid://baybi8hs02wjg" path="res://Scenes/Chair/Money/money_controller.tscn" id="4_776ly"]
+
+[node name="ChairContainer" type="Node3D" unique_id=1088973269]
+
+[node name="Chair" parent="." unique_id=142225171 instance=ExtResource("2_776ly")]
+
+[node name="PlayerUI" parent="." unique_id=1040131706 node_paths=PackedStringArray("chair", "money_controller") instance=ExtResource("3_6aruv")]
+offset_left = 1.0
+offset_top = 3.0
+offset_right = 1.0
+offset_bottom = 3.0
+chair = NodePath("../Chair")
+money_controller = NodePath("../MoneyController")
+
+[node name="MoneyController" parent="." unique_id=2059934017 node_paths=PackedStringArray("chair") instance=ExtResource("4_776ly")]
+chair = NodePath("../Chair")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1097273067]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.43658912, 2.4767962)
+current = true

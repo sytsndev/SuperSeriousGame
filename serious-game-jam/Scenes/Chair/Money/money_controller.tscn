@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://baybi8hs02wjg"]
+
+[ext_resource type="Script" uid="uid://dwqxims7g1ruv" path="res://Scripts/Chair/Money/MoneyController.gd" id="1_s51ld"]
+
+[node name="MoneyController" type="Node3D" unique_id=2059934017]
+script = ExtResource("1_s51ld")
