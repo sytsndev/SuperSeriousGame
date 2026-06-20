@@ -13,6 +13,7 @@ func _process(delta: float) -> void:
 
 func _shop_upgrade():
 	Global.up_chair_grease_count += 1
+	Global.money_tracker -= price
 
 
 func toggle_disable():

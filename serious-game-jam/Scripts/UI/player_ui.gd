@@ -1,10 +1,12 @@
 class_name PlayerUI
 extends Control
 
-@onready var spin_chair_button: Button = $SpinChair
-@onready var spin_chair_input: LineEdit = $SpinAmount
-@onready var money_label: RichTextLabel = $MoneyLabel
-@onready var barf_meter: ProgressBar = $CanvasLayer/BarfMeter
+@onready var spin_chair_button: Button = %SpinChair
+@onready var spin_chair_input: LineEdit = %SpinAmount
+@onready var money_label: RichTextLabel = %MoneyLabel
+@onready var barf_meter: ProgressBar = %BarfMeter
+@onready var ui_container: Control = %MainUIContainer
+@onready var multiplier_label: RichTextLabel = %Multiplier
 
 @export var chair: Chair
 @export var money_controller: MoneyController
@@ -18,8 +20,9 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	spin_chair_button.disabled = is_spinning
-	money_label.text = str(money_controller.get_money())
+	money_label.text = str(Global.money_tracker)
 	barf_meter.value = Global.barf_tracker
+	multiplier_label.text = "x" + str(Global.apply_upgrades())
 
 
 func setup_barf_meter():
