@@ -11,7 +11,7 @@ var gross_money: float = 0.0
 
 
 #amount of people in the crowd (money multiplier)
-var crowd: int = 5
+var crowd: int = 1 ## Crowd max should be 10
 
 #BARF
 var barf_tracker: float = 0.0
@@ -20,8 +20,8 @@ var barf_mult: float = 7
 
 
 #UPGRADES
-var up_chair_grease_count: int = 0
-var up_delayed_gratification: int = 0
+var up_chair_grease_count: int = 0 
+var up_delayed_gratification: int =0
 
 #UPGRADE MULTS
 var mult_chair_grease: float = 0.1
