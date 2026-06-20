@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://c4pvvpo7xrn7j"]
+
+[ext_resource type="Shader" uid="uid://d36af28df83vi" path="res://Shaders/outline.gdshader" id="1_8nkc4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1f3j8"]
+render_priority = 0
+shader = ExtResource("1_8nkc4")
+shader_parameter/outlineColor = Color(0, 0, 0, 1)
+shader_parameter/depth_threshold = 0.025
+shader_parameter/normal_threshold = 0.5
+shader_parameter/normal_smoothing = 0.250000011875
+shader_parameter/max_thickness = 1.0000000475
+shader_parameter/min_thickness = 1.0
+shader_parameter/max_distance = 75.0
+shader_parameter/min_distance = 2.0
+shader_parameter/grazing_fresnel_power = 5.0
+shader_parameter/grazing_angle_mask_power = 1.0
+shader_parameter/grazing_angle_modulation_factor = 50.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_s1fef"]
+material = SubResource("ShaderMaterial_1f3j8")
+flip_faces = true
+size = Vector2(2, 2)
+
+[node name="OutlineShader" type="Node3D" unique_id=2031938051]
+
+[node name="Outline" type="MeshInstance3D" parent="." unique_id=151163442]
+extra_cull_margin = 16384.0
+mesh = SubResource("QuadMesh_s1fef")

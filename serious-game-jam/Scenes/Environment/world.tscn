@@ -12,6 +12,7 @@
 [ext_resource type="MeshLibrary" uid="uid://df7qgy70uqbp2" path="res://Assets/MeshLibrary/TileSet.meshlib" id="7_w2cw7"]
 [ext_resource type="PackedScene" uid="uid://b4qjd21iqhg45" path="res://Assets/Playground/slider.glb" id="9_n21hv"]
 [ext_resource type="PackedScene" uid="uid://c41x70q26neep" path="res://Assets/Tileset/fountain.gltf" id="9_vpl1c"]
+[ext_resource type="PackedScene" uid="uid://c4pvvpo7xrn7j" path="res://Scenes/Environment/outline_shader.tscn" id="13_uet2k"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_65wml"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -803,3 +804,5 @@ transform = Transform3D(1, 0, 0, 0, 0.9999954, -0.0030297283, 0, 0.0030297283, 0
 
 [node name="fountain2" parent="." unique_id=240717811 instance=ExtResource("9_vpl1c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5418916, 0.4415865, -18.890461)
+
+[node name="OutlineShader" parent="." unique_id=2031938051 instance=ExtResource("13_uet2k")]

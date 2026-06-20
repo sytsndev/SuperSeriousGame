@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://58nq8bvheq1f"]
+
+[ext_resource type="Shader" uid="uid://dxbibjgqvhulb" path="res://Shaders/overlay.gdshader" id="1_aw4iy"]
+[ext_resource type="Script" uid="uid://cb8n2wog6v56q" path="res://Scripts/Evnironment/screen_shader_controller.gd" id="1_d8qa6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uet2k"]
+render_priority = 0
+shader = ExtResource("1_aw4iy")
+shader_parameter/pixel_size = 1.0
+shader_parameter/levels = 81.0
+shader_parameter/gamma = Vector2(0.1, 11)
+
+[sub_resource type="QuadMesh" id="QuadMesh_s1fef"]
+material = SubResource("ShaderMaterial_uet2k")
+flip_faces = true
+
+[node name="ScreenShader" type="Node3D" unique_id=192771570 node_paths=PackedStringArray("mesh")]
+script = ExtResource("1_d8qa6")
+mesh = NodePath("MeshInstance3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1566078891]
+mesh = SubResource("QuadMesh_s1fef")
