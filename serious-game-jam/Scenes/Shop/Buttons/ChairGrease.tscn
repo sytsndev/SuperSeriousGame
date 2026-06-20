@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dqp3y681amjg3"]
+
+[ext_resource type="Script" uid="uid://2we0pciwy8ql" path="res://Scripts/Shop/Buttons/chair_grease.gd" id="1_fp2p3"]
+
+[node name="ShopItem" type="Button" unique_id=668311944]
+offset_right = 808.0
+offset_bottom = 302.0
+theme_override_font_sizes/font_size = 50
+script = ExtResource("1_fp2p3")
+price = 5.0

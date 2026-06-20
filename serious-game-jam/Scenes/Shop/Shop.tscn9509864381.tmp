@@ -1,0 +1,97 @@
+[gd_scene format=3 uid="uid://dk7qkvqqy4kyj"]
+
+[ext_resource type="Script" uid="uid://bkps7uxkn3qpm" path="res://Scripts/Shop/shop.gd" id="1_4kyni"]
+
+[node name="Shop" type="Control" unique_id=1099837403]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_4kyni")
+ship_button_paths = Array[String](["res://Scenes/Shop/Buttons/repair_ship.tscn", "res://Scenes/Shop/Buttons/upgrade_ship_health.tscn"])
+player_button_paths = Array[String](["res://Scenes/Shop/Buttons/upgrade_player_health.tscn"])
+
+[node name="Container" type="Control" parent="." unique_id=1498900110]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ShipContainer" type="ScrollContainer" parent="Container" unique_id=374425644]
+layout_mode = 0
+offset_left = 1166.0
+offset_top = 212.0
+offset_right = 1690.0
+offset_bottom = 943.0
+
+[node name="GridContainer" type="GridContainer" parent="Container/ShipContainer" unique_id=1959510287]
+layout_mode = 2
+
+[node name="PlayerContainer" type="ScrollContainer" parent="Container" unique_id=688382970]
+layout_mode = 0
+offset_left = 414.0
+offset_top = 218.0
+offset_right = 938.0
+offset_bottom = 949.0
+
+[node name="GridContainer" type="GridContainer" parent="Container/PlayerContainer" unique_id=485939992]
+layout_mode = 2
+
+[node name="Money" type="Label" parent="Container" unique_id=758584876]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 29.0
+offset_right = 164.0
+offset_bottom = 79.0
+theme_override_font_sizes/font_size = 25
+text = "test"
+
+[node name="ShipHealth" type="Label" parent="Container" unique_id=1320998173]
+layout_mode = 0
+offset_left = 63.0
+offset_top = 101.0
+offset_right = 154.0
+offset_bottom = 146.0
+theme_override_font_sizes/font_size = 25
+text = "test"
+
+[node name="ShipMaxHealth" type="Label" parent="Container" unique_id=551983099]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 178.0
+offset_right = 164.0
+offset_bottom = 230.0
+theme_override_font_sizes/font_size = 25
+text = "test"
+
+[node name="AddMoney" type="Button" parent="Container" unique_id=56563263]
+layout_mode = 0
+offset_left = 285.0
+offset_top = 32.0
+offset_right = 396.0
+offset_bottom = 75.0
+theme_override_font_sizes/font_size = 25
+text = "+ Money
+"
+
+[node name="Exit" type="Button" parent="Container" unique_id=1550891437]
+layout_mode = 0
+offset_left = 1709.0
+offset_top = 963.0
+offset_right = 1832.0
+offset_bottom = 1022.0
+text = "< Exit"
+
+[node name="ShowShop" type="Button" parent="." unique_id=240609322]
+layout_mode = 0
+offset_left = 1711.0
+offset_top = 964.0
+offset_right = 1832.0
+offset_bottom = 1020.0
+text = "Shop >"
+
+[connection signal="pressed" from="Container/AddMoney" to="." method="_on_add_money_pressed"]
+[connection signal="pressed" from="Container/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="ShowShop" to="." method="_on_show_shop_pressed"]
