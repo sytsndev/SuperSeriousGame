@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bt504iukcmnlm"]
+
+[ext_resource type="Script" uid="uid://yppeeatdf3v4" path="res://Scripts/Shop/3D Shop/3d_shop_item.gd" id="1_y03ex"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4sn2n"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_s1fef"]
+
+[node name="ShopItem" type="Node3D" unique_id=745183903]
+script = ExtResource("1_y03ex")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=418643203]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=438331702]
+shape = SubResource("BoxShape3D_4sn2n")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D" unique_id=1772346803]
+mesh = SubResource("BoxMesh_s1fef")
+
+[connection signal="area_shape_entered" from="Area3D" to="." method="_on_area_3d_area_shape_entered"]

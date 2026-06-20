@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://baybi8hs02wjg" path="res://Scenes/Chair/Money/money_controller.tscn" id="4_776ly"]
 [ext_resource type="Script" uid="uid://2xdebxj2umjp" path="res://Scripts/Camera/CameraController.gd" id="4_bh1wf"]
 [ext_resource type="PackedScene" uid="uid://dqpxluh4k6qso" path="res://Assets/WIP/Shop/ShopStand.glb" id="4_f3tkd"]
+[ext_resource type="PackedScene" uid="uid://bt504iukcmnlm" path="res://Scenes/Shop/3D Shop/shop_item.tscn" id="5_ntlj6"]
 
 [node name="ChairContainer" type="Node3D" unique_id=1088973269]
 
@@ -25,6 +26,21 @@ chair = NodePath("../Chair")
 [node name="ShopStand" parent="." unique_id=592581316 instance=ExtResource("4_f3tkd")]
 transform = Transform3D(-2.1852365e-07, 3.8143444e-09, -5, 0.08726203, 4.9992385, 0, 4.9992385, -0.08726203, -2.1855695e-07, 7.199832, -0.2419846, 2.0975106)
 
+[node name="ShopItem" parent="ShopStand" unique_id=745183903 instance=ExtResource("5_ntlj6")]
+transform = Transform3D(0.0653522, -1.1641532e-10, -1.110223e-15, 2.3283064e-10, 0.06535221, 1.7347235e-17, -4.440892e-16, 1.0408341e-17, 0.065352134, -0.086915165, 0.2441439, 0.10967791)
+
+[node name="ShopItem2" parent="ShopStand" unique_id=74248010 instance=ExtResource("5_ntlj6")]
+transform = Transform3D(0.06535223, -1.1641532e-10, -1.110223e-15, 2.3283064e-10, 0.06535224, 1.7347235e-17, -6.661338e-16, 1.0408341e-17, 0.065352134, -0.03182432, 0.24318239, -0.02391243)
+
+[node name="ShopItem3" parent="ShopStand" unique_id=421868882 instance=ExtResource("5_ntlj6")]
+transform = Transform3D(0.06535224, -2.3283064e-10, -1.110223e-15, 2.3283064e-10, 0.065352246, 1.7347235e-17, -6.661338e-16, 1.3877788e-17, 0.065352134, 0.028414816, 0.24213094, 0.11211681)
+
+[node name="ShopItem5" parent="ShopStand" unique_id=451739989 instance=ExtResource("5_ntlj6")]
+transform = Transform3D(0.065352246, -2.3283064e-10, -1.110223e-15, 3.4924597e-10, 0.06535226, 1.7347235e-17, -6.661338e-16, 1.7347235e-17, 0.065352134, 0.15265658, 0.23996234, 0.11211681)
+
+[node name="ShopItem4" parent="ShopStand" unique_id=336414347 instance=ExtResource("5_ntlj6")]
+transform = Transform3D(0.06535224, -2.3283064e-10, -1.110223e-15, 2.3283064e-10, 0.065352246, 1.7347235e-17, -6.661338e-16, 1.3877788e-17, 0.065352134, 0.094278365, 0.24098128, -0.02684784)
+
 [node name="ChairCamPos" type="Marker3D" parent="." unique_id=1495345905]
 transform = Transform3D(0.7071068, -0.18301271, 0.6830127, 0, 0.9659259, 0.25881907, -0.7071068, -0.18301271, 0.6830127, 3, 1.5, 3)
 
@@ -36,3 +52,4 @@ fov = 90.0
 script = ExtResource("4_bh1wf")
 chair_cam_pos = NodePath("../ChairCamPos")
 shop_cam_pos = NodePath("../ShopCamPos")
+hover_scale = 2.0
