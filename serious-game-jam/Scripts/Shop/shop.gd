@@ -26,6 +26,10 @@ func _ready() -> void:
 		player_grid.add_child(instance)
 
 
+func _process(delta: float) -> void:
+	money.text = "$" + str(Global.money_tracker)
+
+
 func _on_exit_pressed() -> void:
 	if ui_container:
 		ui_container.visible = true
