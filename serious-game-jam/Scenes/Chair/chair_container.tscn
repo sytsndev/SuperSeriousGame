@@ -20,5 +20,5 @@ money_controller = NodePath("../MoneyController")
 chair = NodePath("../Chair")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1097273067]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.43658912, 2.4767962)
+transform = Transform3D(0.70710677, -0.1830127, 0.68301266, 0, 0.9659258, 0.25881904, -0.70710677, -0.1830127, 0.68301266, 3, 1.5, 3)
 current = true

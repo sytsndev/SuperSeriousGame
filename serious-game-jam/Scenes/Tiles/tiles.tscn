@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://dmeriav5yjwrm"]
+
+[ext_resource type="PackedScene" uid="uid://bri2u0ajau5hp" path="res://Assets/Tileset/bench.gltf" id="1_ny4dc"]
+[ext_resource type="PackedScene" uid="uid://cg3vo7c6qa7ua" path="res://Assets/Tileset/bird.gltf" id="2_h5jdx"]
+[ext_resource type="PackedScene" uid="uid://dpn8mxk4i6d2k" path="res://Assets/Tileset/bush.gltf" id="3_qantr"]
+[ext_resource type="PackedScene" uid="uid://daphtu7sc3nfb" path="res://Assets/Tileset/bush_large.gltf" id="4_8itj0"]
+[ext_resource type="PackedScene" uid="uid://2fqaqsoh2pw1" path="res://Assets/Tileset/cobble_stones.gltf" id="5_0kd18"]
+[ext_resource type="PackedScene" uid="uid://irlxbv7u8i8v" path="res://Assets/Tileset/cobble_stones_large.gltf" id="6_an75p"]
+[ext_resource type="PackedScene" uid="uid://qvf3ajvs7rre" path="res://Assets/Tileset/floor_grass_sliced_A.gltf" id="7_t46mj"]
+[ext_resource type="PackedScene" uid="uid://dxwlnsjea301r" path="res://Assets/Tileset/floor_grass_sliced_B.gltf" id="8_0srn0"]
+[ext_resource type="PackedScene" uid="uid://d3twfsm7jmq3e" path="res://Assets/Tileset/floor_grass_sliced_base.gltf" id="9_pxeyu"]
+[ext_resource type="PackedScene" uid="uid://dvpf6aigx2w7f" path="res://Assets/Tileset/floor_grass_sliced_C.gltf" id="10_xtdix"]
+[ext_resource type="PackedScene" uid="uid://b2slhp84tf4qy" path="res://Assets/Tileset/floor_grass_sliced_D.gltf" id="11_i5i2o"]
+[ext_resource type="PackedScene" uid="uid://b2106nhgndoua" path="res://Assets/Tileset/floor_grass_sliced_E.gltf" id="12_8rwb6"]
+[ext_resource type="PackedScene" uid="uid://bpic3sbq8t75q" path="res://Assets/Tileset/floor_grass_sliced_F.gltf" id="13_mtv4g"]
+[ext_resource type="PackedScene" uid="uid://bvrv4neyejjdo" path="res://Assets/Tileset/floor_grass_sliced_G.gltf" id="14_rha4u"]
+[ext_resource type="PackedScene" uid="uid://bbobkc266q7e5" path="res://Assets/Tileset/floor_grass_sliced_H.gltf" id="15_k3upr"]
+[ext_resource type="PackedScene" uid="uid://5y7apnyfuvm7" path="res://Assets/Tileset/floor_grass_sliced_I.gltf" id="16_y5w4s"]
+[ext_resource type="PackedScene" uid="uid://ceobtp0ttppk7" path="res://Assets/Tileset/flower_A.gltf" id="17_6oomm"]
+[ext_resource type="PackedScene" uid="uid://dsrv0miuigq0s" path="res://Assets/Tileset/flower_B.gltf" id="18_ih141"]
+[ext_resource type="PackedScene" uid="uid://c41x70q26neep" path="res://Assets/Tileset/fountain.gltf" id="19_nq350"]
+[ext_resource type="PackedScene" uid="uid://xqeeu01vyahu" path="res://Assets/Tileset/grass_A.gltf" id="20_fyv7s"]
+[ext_resource type="PackedScene" uid="uid://h4kyiodyslnc" path="res://Assets/Tileset/grass_B.gltf" id="21_ffy0m"]
+[ext_resource type="PackedScene" uid="uid://c3vahyldir05c" path="res://Assets/Tileset/hedge_corner.gltf" id="22_7gvv0"]
+[ext_resource type="PackedScene" uid="uid://bntfuown816wh" path="res://Assets/Tileset/hedge_straight.gltf" id="23_fgwlt"]
+[ext_resource type="PackedScene" uid="uid://ceel4ub4frdnr" path="res://Assets/Tileset/hedge_straight_long.gltf" id="24_vh3ww"]
+[ext_resource type="PackedScene" uid="uid://ry5rs24n464v" path="res://Assets/Tileset/street_lantern.gltf" id="25_p76ph"]
+[ext_resource type="PackedScene" uid="uid://cg87xannadqmp" path="res://Assets/Tileset/trashcan.gltf" id="26_05qf4"]
+[ext_resource type="PackedScene" uid="uid://cj7ta2dxf1wih" path="res://Assets/Tileset/tree.gltf" id="27_3uupa"]
+[ext_resource type="PackedScene" uid="uid://cffyfsrxqbrtu" path="res://Assets/Tileset/tree_large.gltf" id="28_k0op4"]
+
+[node name="Tiles" type="Node3D" unique_id=472822808]
+
+[node name="bench2" parent="." unique_id=370915013 instance=ExtResource("1_ny4dc")]
+
+[node name="bird2" parent="." unique_id=102895158 instance=ExtResource("2_h5jdx")]
+
+[node name="bush2" parent="." unique_id=118729025 instance=ExtResource("3_qantr")]
+
+[node name="bush_large2" parent="." unique_id=1703991271 instance=ExtResource("4_8itj0")]
+
+[node name="cobble_stones2" parent="." unique_id=714672665 instance=ExtResource("5_0kd18")]
+
+[node name="cobble_stones_large2" parent="." unique_id=1040355141 instance=ExtResource("6_an75p")]
+
+[node name="floor_grass_sliced_A2" parent="." unique_id=1310128698 instance=ExtResource("7_t46mj")]
+
+[node name="floor_grass_sliced_B2" parent="." unique_id=1649366467 instance=ExtResource("8_0srn0")]
+
+[node name="floor_grass_sliced_base2" parent="." unique_id=1492246824 instance=ExtResource("9_pxeyu")]
+
+[node name="floor_grass_sliced_C2" parent="." unique_id=1643915187 instance=ExtResource("10_xtdix")]
+
+[node name="floor_grass_sliced_D2" parent="." unique_id=573486362 instance=ExtResource("11_i5i2o")]
+
+[node name="floor_grass_sliced_E2" parent="." unique_id=836280151 instance=ExtResource("12_8rwb6")]
+
+[node name="floor_grass_sliced_F2" parent="." unique_id=536250874 instance=ExtResource("13_mtv4g")]
+
+[node name="floor_grass_sliced_G2" parent="." unique_id=708665785 instance=ExtResource("14_rha4u")]
+
+[node name="floor_grass_sliced_H2" parent="." unique_id=225665565 instance=ExtResource("15_k3upr")]
+
+[node name="floor_grass_sliced_I2" parent="." unique_id=1498091393 instance=ExtResource("16_y5w4s")]
+
+[node name="flower_A2" parent="." unique_id=115362521 instance=ExtResource("17_6oomm")]
+
+[node name="flower_B2" parent="." unique_id=1175396024 instance=ExtResource("18_ih141")]
+
+[node name="fountain2" parent="." unique_id=240717811 instance=ExtResource("19_nq350")]
+
+[node name="grass_A2" parent="." unique_id=1556514186 instance=ExtResource("20_fyv7s")]
+
+[node name="grass_B2" parent="." unique_id=2112971606 instance=ExtResource("21_ffy0m")]
+
+[node name="hedge_corner2" parent="." unique_id=1196905908 instance=ExtResource("22_7gvv0")]
+
+[node name="hedge_straight2" parent="." unique_id=476535346 instance=ExtResource("23_fgwlt")]
+
+[node name="hedge_straight_long2" parent="." unique_id=2071244046 instance=ExtResource("24_vh3ww")]
+
+[node name="street_lantern2" parent="." unique_id=199233044 instance=ExtResource("25_p76ph")]
+
+[node name="trashcan2" parent="." unique_id=1002410908 instance=ExtResource("26_05qf4")]
+
+[node name="tree2" parent="." unique_id=124363148 instance=ExtResource("27_3uupa")]
+
+[node name="tree_large2" parent="." unique_id=1303666977 instance=ExtResource("28_k0op4")]
