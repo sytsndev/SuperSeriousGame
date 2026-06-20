@@ -11,7 +11,7 @@ var gross_money: float = 0.0
 
 
 #amount of people in the crowd (money multiplier)
-var init_crowd: int = 4
+var crowd: int = 5
 
 #BARF
 var barf_tracker: float = 0.0
@@ -55,7 +55,7 @@ func apply_upgrades():
 
 
 func apply_crowd():
-	return randi_range(1, init_crowd)
+	return randi_range(1, crowd)
 
 
 func add_to_barf_tracker(spins: float):
