@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://ccu07vrfx3awb"]
 
 [ext_resource type="Script" uid="uid://qen6qduuhlii" path="res://Scripts/Chair/chair.gd" id="1_bjvig"]
-[ext_resource type="PackedScene" uid="uid://buxiigsrjj7vo" path="res://Assets/Inherited Scenes/chair_2_0.tscn" id="2_js5mj"]
+[ext_resource type="PackedScene" uid="uid://w4rssu76w6s6" path="res://Assets/Inherited Scenes/chair_3_0.tscn" id="2_bjvig"]
 
 [node name="Chair" type="Node3D" unique_id=142225171]
 script = ExtResource("1_bjvig")
 path = "Chair/ChairTop"
 
-[node name="Chair" parent="." unique_id=694779403 instance=ExtResource("2_js5mj")]
+[node name="Chair" parent="." unique_id=707312065 instance=ExtResource("2_bjvig")]

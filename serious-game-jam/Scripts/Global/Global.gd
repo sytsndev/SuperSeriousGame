@@ -11,7 +11,7 @@ var gross_money: float = 0.0
 
 
 #amount of people in the crowd (money multiplier)
-var crowd: int = 1 ## Crowd max should be 10
+var crowd: int = 4 ## Crowd max should be 10
 
 #BARF
 var barf_tracker: float = 0.0
