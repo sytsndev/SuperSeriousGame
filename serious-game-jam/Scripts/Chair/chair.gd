@@ -6,6 +6,7 @@ extends Node3D
 
 var chair_top: MeshInstance3D
 signal add_money_signal
+signal spins_complete
 
 
 func _ready() -> void:
@@ -18,7 +19,7 @@ func spin_chair(spin_amount: float = 360.0):
 	tween.set_trans(Tween.TRANS_CUBIC)
 	tween.set_ease(Tween.EASE_OUT)
 	tween.tween_property(chair_top, "rotation_degrees:y", chair_top.rotation_degrees.y + spin_amount, Global.init_spin_rate * spin_rate_mult)
-	add_money_signal.emit(Global.init_spin_rate * spin_rate_mult)
+	tween.finished.connect(end_spin_actions)
 
 
 func spin_duration_for_amount(spin_amount: float) -> float:
@@ -35,3 +36,8 @@ func spin_duration_for_amount(spin_amount: float) -> float:
 	duration = clamp(duration, base_time * 0.8, base_time * 4.0)
 
 	return duration
+
+
+func end_spin_actions():
+	add_money_signal.emit()
+	spins_complete.emit()

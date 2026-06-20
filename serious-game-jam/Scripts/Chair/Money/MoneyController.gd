@@ -14,5 +14,5 @@ func get_money():
 	return curr_money
 
 
-func add_money(amount: float):
-	curr_money += snapped(amount, 0.01) 
+func add_money():
+	curr_money += snapped(Global.base_money_amount, 0.01) 
