@@ -15,4 +15,4 @@ func get_money():
 
 
 func add_money():
-	curr_money += snapped(Global.base_money_amount, 0.01) 
+	curr_money += snapped(Global.get_money_for_spin(), 0.01) 

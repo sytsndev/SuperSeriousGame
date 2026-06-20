@@ -19,7 +19,8 @@ func spin_chair(spin_amount: float = 360.0):
 	tween.set_trans(Tween.TRANS_CUBIC)
 	tween.set_ease(Tween.EASE_OUT)
 	tween.tween_property(chair_top, "rotation_degrees:y", chair_top.rotation_degrees.y + spin_amount, Global.init_spin_rate * spin_rate_mult)
-	tween.finished.connect(end_spin_actions)
+	tween.finished.connect(func():
+		end_spin_actions(spin_amount))
 
 
 func spin_duration_for_amount(spin_amount: float) -> float:
@@ -38,6 +39,7 @@ func spin_duration_for_amount(spin_amount: float) -> float:
 	return duration
 
 
-func end_spin_actions():
+func end_spin_actions(barf: float):
+	Global.add_to_barf_tracker(barf)
 	add_money_signal.emit()
 	spins_complete.emit()
