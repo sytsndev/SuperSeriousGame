@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://bp3pr2j3hueu"]
+
+[ext_resource type="PackedScene" uid="uid://cvayn0nuxxhxx" path="res://Scenes/Environment/Maps/world.tscn" id="1_bhjri"]
+[ext_resource type="Script" uid="uid://dlllli3jcrovy" path="res://Scripts/Evnironment/Levels/playground.gd" id="1_pkhe6"]
+[ext_resource type="PackedScene" uid="uid://bnddnmpjd3w52" path="res://Scenes/Environment/NPC/crowd_memeber.tscn" id="2_5oq3e"]
+[ext_resource type="PackedScene" uid="uid://bror5epie35fx" path="res://Scenes/Chair/chair_container.tscn" id="2_08fgb"]
+
+[node name="Playground" type="Node3D" unique_id=1550650181 node_paths=PackedStringArray("crowd_spawn_node")]
+script = ExtResource("1_pkhe6")
+crowd_spawn_node = NodePath("CrowdSpawn")
+crowd_member = ExtResource("2_5oq3e")
+
+[node name="World" parent="." unique_id=605021482 instance=ExtResource("1_bhjri")]
+
+[node name="ChairContainer" parent="." unique_id=1088973269 instance=ExtResource("2_08fgb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.95416343, 1.0219142, -2.6268988)
+
+[node name="CrowdSpawn" type="Node3D" parent="." unique_id=1599583532]
+
+[node name="Marker3D" type="Marker3D" parent="CrowdSpawn" unique_id=1586344819]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7361126, 0.72321653, -3.8546376)
+
+[node name="Marker3D2" type="Marker3D" parent="CrowdSpawn" unique_id=880476261]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.23543382, 0.72321653, -3.8546376)
+
+[node name="Marker3D3" type="Marker3D" parent="CrowdSpawn" unique_id=1968664309]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.23543382, 0.72321653, -1.7003896)
+
+[node name="Marker3D4" type="Marker3D" parent="CrowdSpawn" unique_id=253028679]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0054858, 0.7232168, -2.8847141)
+
+[node name="Marker3D5" type="Marker3D" parent="CrowdSpawn" unique_id=1710382391]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3565409, 0.7232168, -4.6817513)
+
+[node name="Marker3D6" type="Marker3D" parent="CrowdSpawn" unique_id=320898522]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7973003, 0.7232168, -1.8831725)
+
+[node name="Marker3D7" type="Marker3D" parent="CrowdSpawn" unique_id=232842285]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0884378, 0.7232168, -4.182622)
+
+[node name="Marker3D8" type="Marker3D" parent="CrowdSpawn" unique_id=1637859983]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0886707, 0.7232168, -7.1202035)
+
+[node name="Marker3D9" type="Marker3D" parent="CrowdSpawn" unique_id=1037759406]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.019432, 0.7232168, -2.4975219)
+
+[node name="Marker3D10" type="Marker3D" parent="CrowdSpawn" unique_id=621422558]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7081904, 0.7232168, -8.3469715)
+
+[node name="Marker3D11" type="Marker3D" parent="CrowdSpawn" unique_id=837877026]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5621457, 0.7232168, -10.132773)
+
+[node name="Marker3D12" type="Marker3D" parent="CrowdSpawn" unique_id=2043842346]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9126964, 0.7232168, -9.9512205)
+
+[node name="Marker3D13" type="Marker3D" parent="CrowdSpawn" unique_id=1885099792]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9126964, 0.7232168, -9.9512205)

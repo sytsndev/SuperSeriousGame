@@ -15,10 +15,20 @@ func _ready() -> void:
 
 
 func setup_crowd():
+	Global.crowd_added.connect(spawn_child)
 	var i = 0
 	while i < Global.crowd:
-		var instance = crowd_member.instantiate()
-		crowd_spawns[i].add_child(instance)
+		spawn_child(i)
 		i += 1
 		if i == Global.crowd:
 			break
+
+
+func spawn_child(index: int = -1):
+	var instance = crowd_member.instantiate()
+	if index >= 0:
+		crowd_spawns[index].add_child(instance)
+	else:
+		for spawn in crowd_spawns:
+			if spawn.get_child_count() == 0:
+				spawn.add_child(instance)

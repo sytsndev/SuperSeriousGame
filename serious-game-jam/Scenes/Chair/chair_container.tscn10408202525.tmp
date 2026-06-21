@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://bror5epie35fx"]
+
+[ext_resource type="PackedScene" uid="uid://ccu07vrfx3awb" path="res://Scenes/Chair/chair.tscn" id="2_776ly"]
+[ext_resource type="PackedScene" uid="uid://xg3s67a0ntan" path="res://Scenes/UI/player_ui.tscn" id="3_6aruv"]
+[ext_resource type="PackedScene" uid="uid://baybi8hs02wjg" path="res://Scenes/Chair/Money/money_controller.tscn" id="4_776ly"]
+[ext_resource type="Script" uid="uid://2xdebxj2umjp" path="res://Scripts/Camera/CameraController.gd" id="4_bh1wf"]
+[ext_resource type="PackedScene" uid="uid://dqpxluh4k6qso" path="res://Assets/WIP/Shop/ShopStand.glb" id="4_f3tkd"]
+[ext_resource type="PackedScene" uid="uid://bt504iukcmnlm" path="res://Scenes/Shop/3D Shop/shop_item.tscn" id="5_ntlj6"]
+
+[node name="ChairContainer" type="Node3D" unique_id=1088973269]
+
+[node name="Chair" parent="." unique_id=142225171 instance=ExtResource("2_776ly")]
+
+[node name="PlayerUI" parent="." unique_id=1040131706 node_paths=PackedStringArray("chair", "money_controller", "camera_controller") instance=ExtResource("3_6aruv")]
+offset_left = 1.0
+offset_top = 3.0
+offset_right = 1.0
+offset_bottom = 3.0
+chair = NodePath("../Chair")
+money_controller = NodePath("../MoneyController")
+camera_controller = NodePath("../Camera3D")
+
+[node name="MoneyController" parent="." unique_id=2059934017 node_paths=PackedStringArray("chair") instance=ExtResource("4_776ly")]
+chair = NodePath("../Chair")
+
+[node name="ShopStand" parent="." unique_id=592581316 instance=ExtResource("4_f3tkd")]
+transform = Transform3D(-2.1852365e-07, 3.8143444e-09, -5, 0.08726203, 4.9992385, 0, 4.9992385, -0.08726203, -2.1855695e-07, 7.199832, -0.2419846, 2.0975106)
+
+[node name="Grease" parent="ShopStand" unique_id=745183903 instance=ExtResource("5_ntlj6")]
+transform = Transform3D(0.0653522, -1.1641532e-10, -1.110223e-15, 2.3283064e-10, 0.06535221, 1.7347235e-17, -4.440892e-16, 1.0408341e-17, 0.065352134, -0.086915165, 0.2441439, 0.10967791)
+mesh_path = "res://Assets/WIP/Upgrades/ChairGrease.glb"
+price_increase = 1.0
+
+[node name="Pills" parent="ShopStand" unique_id=74248010 instance=ExtResource("5_ntlj6")]
+transform = Transform3D(0.06535223, -1.1641532e-10, -1.110223e-15, 2.3283064e-10, 0.06535224, 1.7347235e-17, -6.661338e-16, 1.0408341e-17, 0.065352134, -0.03182432, 0.24318239, -0.02391243)
+item_type = 1
+price = 25.0
+mesh_path = "res://Assets/WIP/Upgrades/NauseaMedication.glb"
+init_rot = Vector3(0, 0, 0)
+price_increase = 10.0
+
+[node name="Crowd" parent="ShopStand" unique_id=421868882 instance=ExtResource("5_ntlj6")]
+transform = Transform3D(0.06535224, -2.3283064e-10, -1.110223e-15, 2.3283064e-10, 0.065352246, 1.7347235e-17, -6.661338e-16, 1.3877788e-17, 0.065352134, 0.028414816, 0.24213094, 0.11211681)
+item_type = 2
+price = 50.0
+mesh_path = "res://Assets/WIP/Upgrades/Crowd.glb"
+init_rot = Vector3(0, 0, 0)
+price_increase = 25.0
+
+[node name="ShopItem5" parent="ShopStand" unique_id=451739989 instance=ExtResource("5_ntlj6")]
+transform = Transform3D(0.065352246, -2.3283064e-10, -1.110223e-15, 3.4924597e-10, 0.06535226, 1.7347235e-17, -6.661338e-16, 1.7347235e-17, 0.065352134, 0.15265658, 0.23996234, 0.11211681)
+item_type = 3
+price = 10000.0
+mesh_path = "res://Assets/WIP/Upgrades/ChairGrease.glb"
+
+[node name="ShopItem4" parent="ShopStand" unique_id=336414347 instance=ExtResource("5_ntlj6")]
+transform = Transform3D(0.06535224, -2.3283064e-10, -1.110223e-15, 2.3283064e-10, 0.065352246, 1.7347235e-17, -6.661338e-16, 1.3877788e-17, 0.065352134, 0.094278365, 0.24098128, -0.02684784)
+item_type = 3
+price = 1000.0
+mesh_path = "res://Assets/WIP/Upgrades/ChairGrease.glb"
+
+[node name="ChairCamPos" type="Marker3D" parent="." unique_id=1495345905]
+transform = Transform3D(0.7071068, -0.18301271, 0.6830127, 0, 0.9659259, 0.25881907, -0.7071068, -0.18301271, 0.6830127, 3, 1.5, 3)
+
+[node name="ShopCamPos" type="Marker3D" parent="." unique_id=720151566]
+transform = Transform3D(-4.371139e-08, 0.25881904, -0.9659259, 0, 0.9659259, 0.25881904, 1, 1.131334e-08, -4.222196e-08, 5.2905254, 1.9798982, 2.2242205)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=2053373784 node_paths=PackedStringArray("chair_cam_pos", "shop_cam_pos")]
+fov = 90.0
+script = ExtResource("4_bh1wf")
+chair_cam_pos = NodePath("../ChairCamPos")
+shop_cam_pos = NodePath("../ShopCamPos")
+hover_scale = 2.0

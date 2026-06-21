@@ -19,6 +19,7 @@ extends Control
 var is_spinning: bool = false
 
 func _ready() -> void:
+	var root = get_tree().root
 	chair.spins_complete.connect(spin_complete)
 	exit_shop_button.visible = false
 	setup_barf_meter()

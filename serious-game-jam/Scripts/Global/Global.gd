@@ -14,8 +14,8 @@ var gross_money: float = 0.0
 
 
 #amount of people in the crowd (money multiplier)
-var crowd: int = 4 ## Crowd max should be 10
-
+var crowd: int = 1 ## Crowd max should be 10
+var crowd_max: int = 10
 #BARF
 var barf_tracker: float = 0.0
 var barf_max: float = 36000
@@ -32,12 +32,18 @@ var mult_delayed_gratification: float = 1.3 #I want this to make barf meter max 
 var mult_barf_increase_delayed_gratification: float = 36000 
 
 signal money_added
+signal crowd_added
 
 func add_money():
 	var money_to_add = snapped(Global.get_money_for_spin(), 0.01) 
 	Global.gross_money += money_to_add
 	Global.money_tracker += money_to_add
 	money_added.emit(money_to_add)
+
+
+func add_crowd():
+	crowd += 1
+	crowd_added.emit()
 
 
 func get_spin_force() -> float:
