@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://xg3s67a0ntan"]
 
 [ext_resource type="Script" uid="uid://cdecxnaal23lf" path="res://Scripts/UI/player_ui.gd" id="1_xnwvs"]
+[ext_resource type="Texture2D" uid="uid://bawwmcqlxs1v4" path="res://Assets/WIP/UI/BarfMeterEmpty2.png" id="2_t3flm"]
+[ext_resource type="Texture2D" uid="uid://cqgg4cxn7dan7" path="res://Assets/WIP/UI/BarfMeterFilled2.png" id="3_8n2hl"]
 
 [node name="PlayerUI" type="Control" unique_id=1040131706]
 layout_mode = 3
@@ -55,19 +57,6 @@ offset_bottom = 74.0
 grow_horizontal = 0
 text = "test"
 
-[node name="BarfMeter" type="ProgressBar" parent="MainUIContainer" unique_id=2040983060]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -938.5
-offset_top = 102.0
-offset_right = -825.5
-offset_bottom = 1043.0
-grow_horizontal = 2
-fill_mode = 3
-
 [node name="Multiplier" type="RichTextLabel" parent="MainUIContainer" unique_id=262112873]
 unique_name_in_owner = true
 layout_mode = 1
@@ -81,6 +70,17 @@ offset_bottom = -979.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "test"
+
+[node name="BarfMeter" type="TextureProgressBar" parent="MainUIContainer" unique_id=2039658443]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -81.0
+offset_top = -4.0
+offset_right = 431.0
+offset_bottom = 960.0
+fill_mode = 2
+texture_under = ExtResource("2_t3flm")
+texture_progress = ExtResource("3_8n2hl")
 
 [node name="ShopButtons" type="Control" parent="." unique_id=168740472]
 anchors_preset = 0
@@ -120,6 +120,11 @@ grow_horizontal = 0
 grow_vertical = 2
 text = "< CHAIR
 "
+
+[node name="Control" type="Control" parent="." unique_id=1878931545]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [connection signal="pressed" from="MainUIContainer/SpinChair" to="." method="_on_spin_chair_pressed"]
 [connection signal="pressed" from="ShopButtons/EnterShop" to="." method="_on_enter_shop_pressed"]

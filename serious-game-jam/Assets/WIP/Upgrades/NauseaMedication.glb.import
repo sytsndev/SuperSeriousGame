@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://c8gdt4wmh05q1"
-path="res://.godot/imported/ChairGrease.glb-cbcfe243c7937163e87bb5566015b4b0.scn"
+uid="uid://bxn8oadc27k5y"
+path="res://.godot/imported/NauseaMedication.glb-093850b631bfc69fa7f4d4073efce553.scn"
 
 [deps]
 
-source_file="res://Assets/WIP/Upgrades/ChairGrease.glb"
-dest_files=["res://.godot/imported/ChairGrease.glb-cbcfe243c7937163e87bb5566015b4b0.scn"]
+source_file="res://Assets/WIP/Upgrades/NauseaMedication.glb"
+dest_files=["res://.godot/imported/NauseaMedication.glb-093850b631bfc69fa7f4d4073efce553.scn"]
 
 [params]
 

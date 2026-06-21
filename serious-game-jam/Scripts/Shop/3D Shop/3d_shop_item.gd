@@ -1,7 +1,8 @@
 class_name ShopItem3D
 extends Node3D
 
-enum ItemType { CHAIR_GREASE, OTHER }
+enum ItemType { CHAIR_GREASE, 
+OTHER }
 
 @onready var disabled_mat: StandardMaterial3D = preload("res://Shaders/Materials/disabled_item.tres")
 
@@ -32,10 +33,12 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Global.money_tracker < price:
 		item_disabled = true
-		mesh.set_surface_override_material(0, disabled_mat)
+		for i in range(mesh.get_surface_override_material_count()):
+			mesh.set_surface_override_material(i, disabled_mat)
 	else:
 		item_disabled = false
-		mesh.set_surface_override_material(0, orig_mat)
+		for i in range(mesh.get_surface_override_material_count()):
+			mesh.set_surface_override_material(i, orig_mat)
 
 
 func on_click():
