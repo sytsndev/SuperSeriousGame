@@ -44,20 +44,20 @@ func _physics_process(delta: float) -> void:
 		print(accumulated_spins)
 		
 #block-comment
-"""func spin_duration_for_amount(spin_amount: float) -> float:
-	var base_spin: float = 360.0
-	var base_time: float = 1.2
-
-	var ratio = spin_amount / base_spin
-
-	# Try exponents: 0.3, 0.4, 0.5, etc.
-	var exponent = 0.4
-	var duration = base_time * pow(ratio, exponent)
-
-	# Optional clamp
-	duration = clamp(duration, base_time * 0.8, base_time * 4.0)
-
-	return duration"""
+#func spin_duration_for_amount(spin_amount: float) -> float:
+	#var base_spin: float = 360.0
+	#var base_time: float = 1.2
+#
+	#var ratio = spin_amount / base_spin
+#
+	## Try exponents: 0.3, 0.4, 0.5, etc.
+	#var exponent = 0.4
+	#var duration = base_time * pow(ratio, exponent)
+#
+	## Optional clamp
+	#duration = clamp(duration, base_time * 0.8, base_time * 4.0)
+#
+	#return duration
 
 
 func end_spin_actions(barf: float):
