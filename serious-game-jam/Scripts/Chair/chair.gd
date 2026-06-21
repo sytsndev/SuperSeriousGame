@@ -27,21 +27,22 @@ func spin_chair(force_override: float = -1.0):
 func _physics_process(delta: float) -> void:
 	if not is_spinning:
 		return
-	
-	#1. This block rotates the seat on the velocity detected this frame
-	var step = angular_velocity * delta #force this frame in degrees
+		
+	#speed at end of frame, after friction
+	var next_velocity = angular_velocity - Global.get_friction() * delta
+		
+	#average start and end speed -> exact for constant deceleration
+	var step = (angular_velocity + next_velocity) * 0.5 * delta
 	chair_top.rotate_y(deg_to_rad(step))
-	accumulated_spins += (step / 360)
-	
-	#2. Friction for slowing the chair down
-	angular_velocity -= Global.get_friction() * delta
-	
-	#3. Stop and payout
-	if angular_velocity <= 0:
-		angular_velocity = 0
+	accumulated_spins += step
+	angular_velocity = next_velocity
+		
+	if angular_velocity <= 0.0:
+		angular_velocity = 0.0
 		is_spinning = false
 		end_spin_actions(accumulated_spins)
 		print(accumulated_spins)
+		
 #block-comment
 """func spin_duration_for_amount(spin_amount: float) -> float:
 	var base_spin: float = 360.0

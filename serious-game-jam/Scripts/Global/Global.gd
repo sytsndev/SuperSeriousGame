@@ -5,7 +5,7 @@ var init_spin_rate: float = 1.2
 var init_spin_amount: float = 360.0
 
 var base_spin_force: float = 360.0
-var base_friction: float = 180
+var base_friction: float = 180.0
 
 #MONEY
 var base_money_amount: float = 0.25
