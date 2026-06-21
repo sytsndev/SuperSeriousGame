@@ -5,7 +5,6 @@ extends Node3D
 @export var path: String
 
 var chair_top: MeshInstance3D
-signal add_money_signal
 signal spins_complete
 
 #Physics
@@ -62,5 +61,6 @@ func _physics_process(delta: float) -> void:
 
 func end_spin_actions(barf: float):
 	Global.add_to_barf_tracker(barf)
-	add_money_signal.emit()
+	Global.add_money()
 	spins_complete.emit()
+	

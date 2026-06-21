@@ -7,7 +7,8 @@ var curr_money: float = 0.0
 
 
 func _ready() -> void:
-	chair.add_money_signal.connect(add_money)
+	#chair.add_money_signal.connect(add_money)
+	pass
 
 
 func get_money():

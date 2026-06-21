@@ -2,6 +2,8 @@ class_name ShopItem3D
 extends Node3D
 
 enum ItemType { CHAIR_GREASE, 
+DELAYED_GRATIFICATION,
+CROWD,
 OTHER }
 
 @onready var disabled_mat: StandardMaterial3D = preload("res://Shaders/Materials/disabled_item.tres")
@@ -10,6 +12,7 @@ OTHER }
 @export var price: float = 5.0
 @export var mesh_path: String
 @export var init_rot: Vector3 = Vector3(0, 180, 0)
+@export var price_increase: float
 
 var mesh: MeshInstance3D
 var orig_mat: StandardMaterial3D
@@ -47,6 +50,13 @@ func on_click():
 	match item_type:
 		ItemType.CHAIR_GREASE:
 			Global.up_chair_grease_count += 1
+			Global.money_tracker -= price
+		ItemType.DELAYED_GRATIFICATION:
+			Global.up_delayed_gratification += 1
+			Global.barf_max += Global.mult_barf_increase_delayed_gratification
+			Global.money_tracker -= price
+		ItemType.CROWD:
+			Global.crowd += 1
 			Global.money_tracker -= price
 		ItemType.OTHER:
 			print("other")

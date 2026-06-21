@@ -4,6 +4,7 @@ extends Control
 @onready var spin_chair_button: Button = %SpinChair
 @onready var spin_chair_input: LineEdit = %SpinAmount
 @onready var money_label: RichTextLabel = %MoneyLabel
+@onready var money_added_label: RichTextLabel = %MoneyAdded
 @onready var barf_meter: TextureProgressBar = %BarfMeter
 @onready var ui_container: Control = %MainUIContainer
 @onready var multiplier_label: RichTextLabel = %Multiplier
@@ -21,13 +22,41 @@ func _ready() -> void:
 	chair.spins_complete.connect(spin_complete)
 	exit_shop_button.visible = false
 	setup_barf_meter()
+	Global.money_added.connect(show_money_added_label)
 
 
 func _process(delta: float) -> void:
 	spin_chair_button.disabled = is_spinning
 	money_label.text = str(Global.money_tracker)
 	barf_meter.value = Global.barf_tracker
+	barf_meter.max_value = Global.barf_max
 	multiplier_label.text = "x" + str(Global.apply_upgrades())
+
+
+func show_money_added_label(amount: float, seconds: float = 2.0) -> void:
+	money_added_label.text = "+" + str(amount)
+	money_added_label.visible = true
+	money_added_label.modulate.a = 1.0
+
+	var label = money_added_label
+	var base_y = label.position.y
+	var bounce_up = -18.0
+	var tween = create_tween()
+
+	# Bounce up
+	tween.tween_property(label, "position:y", base_y + bounce_up, 0.25) \
+		.set_trans(Tween.TRANS_BOUNCE) \
+		.set_ease(Tween.EASE_OUT)
+
+	# Slow drop back to original + fade out
+	tween.tween_property(label, "position:y", base_y, seconds - 0.3) \
+		.set_trans(Tween.TRANS_SINE) \
+		.set_ease(Tween.EASE_IN)
+	tween.parallel().tween_property(label, "modulate:a", 0.0, seconds - 0.3)
+
+	await tween.finished
+	label.visible = false
+	label.modulate.a = 1.0
 
 
 func setup_barf_meter():
@@ -44,6 +73,7 @@ func _on_spin_chair_pressed() -> void:
 		is_spinning = true
 		chair.spin_chair()
 	if spin_chair_input.text != "":
+		Global.money_tracker += int(spin_chair_input.text)
 		is_spinning = true
 		chair.spin_chair(int(spin_chair_input.text))
 
