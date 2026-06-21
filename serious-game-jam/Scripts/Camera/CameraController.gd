@@ -9,6 +9,8 @@ var curr_camera: String
 var curr_hover_item: ShopItem3D = null
 var last_hover_area: Area3D = null
 var original_hover_scale: Vector3 = Vector3.ONE
+var start_pos: Vector3
+var end_pos: Vector3
 
 @export var hover_offset: float = 0.02
 @export var hover_scale: float = 1.01
@@ -19,12 +21,16 @@ var ray_length: float = 100.0
 func _ready() -> void:
 	global_position = chair_cam_pos.global_position
 	global_rotation = chair_cam_pos.global_rotation
+	
 	curr_camera = "chair"
 
 
 func _input(event):
 	if event is InputEventMouseMotion or event is InputEventMouseButton:
 		_update_ray_and_check_collision()
+	if Input.is_action_just_pressed("action_1"):
+		if curr_hover_item:
+			curr_hover_item.on_click()
 
 
 func swap_camera(camera_pos: String):
@@ -80,6 +86,8 @@ func _update_ray_and_check_collision():
 		last_hover_area = new_hover_area
 		curr_hover_item = new_hover_area.get_parent()
 		if curr_hover_item:
+			end_pos = Vector3(curr_hover_item.global_position.x, curr_hover_item.global_position.y + hover_offset, curr_hover_item.global_position.z)
+			start_pos = curr_hover_item.global_position
 			hover_item()
 
 	elif not new_hover_area and last_hover_area:
@@ -93,16 +101,13 @@ func hover_item():
 	var tween = create_tween()
 	tween.set_trans(Tween.TRANS_LINEAR)
 	tween.set_ease(Tween.EASE_IN_OUT)
-	var pos = Vector3(curr_hover_item.global_position.x, curr_hover_item.global_position.y + hover_offset, curr_hover_item.global_position.z)
 	original_hover_scale = curr_hover_item.scale
-	tween.set_parallel(true)
-	tween.tween_property(curr_hover_item, "global_position", pos, 0.1)
+	print(end_pos)
+	tween.tween_property(curr_hover_item, "global_position", end_pos, 0.1)
 
 
 func reset_hover_item():
 	var tween = create_tween()
 	tween.set_trans(Tween.TRANS_LINEAR)
 	tween.set_ease(Tween.EASE_IN_OUT)
-	var pos = Vector3(curr_hover_item.global_position.x, curr_hover_item.global_position.y - hover_offset, curr_hover_item.global_position.z)
-	tween.set_parallel(true)
-	tween.tween_property(curr_hover_item, "global_position", pos, 0.1)
+	tween.tween_property(curr_hover_item, "global_position", start_pos, 0.1)

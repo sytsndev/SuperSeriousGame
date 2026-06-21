@@ -31,6 +31,7 @@ transform = Transform3D(0.0653522, -1.1641532e-10, -1.110223e-15, 2.3283064e-10,
 
 [node name="ShopItem2" parent="ShopStand" unique_id=74248010 instance=ExtResource("5_ntlj6")]
 transform = Transform3D(0.06535223, -1.1641532e-10, -1.110223e-15, 2.3283064e-10, 0.06535224, 1.7347235e-17, -6.661338e-16, 1.0408341e-17, 0.065352134, -0.03182432, 0.24318239, -0.02391243)
+item_type = 1
 
 [node name="ShopItem3" parent="ShopStand" unique_id=421868882 instance=ExtResource("5_ntlj6")]
 transform = Transform3D(0.06535224, -2.3283064e-10, -1.110223e-15, 2.3283064e-10, 0.065352246, 1.7347235e-17, -6.661338e-16, 1.3877788e-17, 0.065352134, 0.028414816, 0.24213094, 0.11211681)

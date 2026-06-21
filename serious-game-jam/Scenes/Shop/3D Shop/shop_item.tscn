@@ -6,8 +6,9 @@
 
 [sub_resource type="BoxMesh" id="BoxMesh_s1fef"]
 
-[node name="ShopItem" type="Node3D" unique_id=745183903]
+[node name="ShopItem" type="Node3D" unique_id=745183903 node_paths=PackedStringArray("mesh")]
 script = ExtResource("1_y03ex")
+mesh = NodePath("Area3D/MeshInstance3D")
 
 [node name="Area3D" type="Area3D" parent="." unique_id=418643203]
 
