@@ -4,6 +4,9 @@ extends Node
 var init_spin_rate: float = 1.2
 var init_spin_amount: float = 360.0
 
+var base_spin_force: float = 360.0
+var base_friction: float = 180
+
 #MONEY
 var base_money_amount: float = 0.25
 var money_tracker: float = 0.0
@@ -27,6 +30,13 @@ var up_delayed_gratification: int =0
 var mult_chair_grease: float = 0.1
 var mult_delayed_gratification: float = 1.3 #I want this to make barf meter max 2x higher but then 2.3 times more profit
 
+func get_spin_force() -> float:
+	var force = base_spin_force
+	return force
+	
+func get_friction() -> float:
+	var friction = base_friction
+	return friction
 
 
 func get_money_for_spin():
