@@ -7,13 +7,26 @@ enum ItemType { CHAIR_GREASE, OTHER }
 
 @export var item_type: ItemType 
 @export var price: float = 5.0
-@export var mesh: MeshInstance3D
+@export var mesh_path: String
+@export var init_rot: Vector3 = Vector3(0, 180, 0)
 
+var mesh: MeshInstance3D
 var orig_mat: StandardMaterial3D
 var item_disabled: bool = false
 
 func _ready() -> void:
-	orig_mat = mesh.get_active_material(0) as StandardMaterial3D
+	var loaded_path = load(mesh_path)
+	var instance = loaded_path.instantiate()
+	instance.rotation = init_rot
+	add_child(instance)
+	var mesh_child: MeshInstance3D = null
+	for child in instance.get_children():
+		if child is MeshInstance3D:
+			mesh_child = child
+
+	if mesh_child:
+		mesh = mesh_child
+		orig_mat = mesh_child.get_active_material(0) as StandardMaterial3D
 
 
 func _process(delta: float) -> void:
