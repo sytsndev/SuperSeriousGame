@@ -16,6 +16,7 @@ func get_money():
 
 func add_money():
 	var money_to_add = snapped(Global.get_money_for_spin(), 0.01) 
+	print(money_to_add)
 	curr_money += money_to_add
 	Global.gross_money += money_to_add
-	Global.money_tracker = curr_money
+	Global.money_tracker += money_to_add
