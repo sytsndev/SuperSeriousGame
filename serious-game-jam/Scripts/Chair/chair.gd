@@ -22,8 +22,31 @@ func spin_chair(force_override: float = -1.0):
 	angular_velocity = force
 	accumulated_spins = 0.0
 	is_spinning = true
-	
+
+
 func _physics_process(delta: float) -> void:
+	if Input.is_action_just_pressed("spin") and !is_spinning:
+		spin_chair()
+	spin(delta)
+	
+#block-comment
+#func spin_duration_for_amount(spin_amount: float) -> float:
+	#var base_spin: float = 360.0
+	#var base_time: float = 1.2
+#
+	#var ratio = spin_amount / base_spin
+#
+	## Try exponents: 0.3, 0.4, 0.5, etc.
+	#var exponent = 0.4
+	#var duration = base_time * pow(ratio, exponent)
+#
+	## Optional clamp
+	#duration = clamp(duration, base_time * 0.8, base_time * 4.0)
+#
+	#return duration
+
+
+func spin(delta: float):
 	if not is_spinning:
 		return
 		
@@ -41,23 +64,6 @@ func _physics_process(delta: float) -> void:
 		is_spinning = false
 		end_spin_actions(accumulated_spins)
 		print(accumulated_spins)
-		
-#block-comment
-#func spin_duration_for_amount(spin_amount: float) -> float:
-	#var base_spin: float = 360.0
-	#var base_time: float = 1.2
-#
-	#var ratio = spin_amount / base_spin
-#
-	## Try exponents: 0.3, 0.4, 0.5, etc.
-	#var exponent = 0.4
-	#var duration = base_time * pow(ratio, exponent)
-#
-	## Optional clamp
-	#duration = clamp(duration, base_time * 0.8, base_time * 4.0)
-#
-	#return duration
-
 
 func end_spin_actions(barf: float):
 	Global.add_to_barf_tracker(barf)
