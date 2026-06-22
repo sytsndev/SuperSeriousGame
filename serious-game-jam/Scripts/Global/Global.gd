@@ -4,8 +4,8 @@ extends Node
 var init_spin_rate: float = 1.2
 var init_spin_amount: float = 360.0
 
-var base_spin_force: float = 1080.0
-var base_friction: float = 540.0
+var base_spin_force: float = 360.0
+var base_friction: float = 180.0
 
 #MONEY
 var base_money_amount: float = 0.25
@@ -52,7 +52,8 @@ func get_spin_force() -> float:
 	
 func get_friction() -> float:
 	var friction = base_friction
-	return friction
+	friction *= pow(0.85, up_chair_grease_count)
+	return max(friction, 60.0) 
 
 
 func get_money_for_spin():
