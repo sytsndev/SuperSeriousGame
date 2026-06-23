@@ -1,10 +1,14 @@
 class_name Chair
 extends Node3D
 
+@export var qte_controller: QTEController
 
 @export var path: String
 
 var chair_top: MeshInstance3D
+
+var is_qte_active: bool = false
+
 signal spins_complete
 
 #Physics
@@ -15,6 +19,7 @@ var accumulated_spins: float = 0.0 #total number of full 360 degree spins
 
 func _ready() -> void:
 	chair_top = get_node(path)
+	qte_controller.active.connect(qte_active)
 
 
 func spin_chair(force_override: float = -1.0):
@@ -22,11 +27,15 @@ func spin_chair(force_override: float = -1.0):
 	angular_velocity = force
 	accumulated_spins = 0.0
 	is_spinning = true
+	qte_controller.init_qte()
 
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("spin") and !is_spinning:
 		spin_chair()
+	elif Input.is_action_just_pressed("spin") and is_qte_active:
+		handle_qte_success()
+		
 	spin(delta)
 	
 #func spin_duration_for_amount(spin_amount: float) -> float:
@@ -67,4 +76,13 @@ func end_spin_actions(barf: float):
 	Global.add_to_barf_tracker(barf)
 	Global.add_money()
 	spins_complete.emit()
-	
+
+
+func qte_active(active: bool):
+	print(active)
+	is_qte_active = active
+
+
+func handle_qte_success():
+	angular_velocity += 1000
+	qte_controller.qte_success()

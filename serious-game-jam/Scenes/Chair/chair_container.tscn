@@ -6,10 +6,12 @@
 [ext_resource type="Script" uid="uid://2xdebxj2umjp" path="res://Scripts/Camera/CameraController.gd" id="4_bh1wf"]
 [ext_resource type="PackedScene" uid="uid://dqpxluh4k6qso" path="res://Assets/WIP/Shop/ShopStand.glb" id="4_f3tkd"]
 [ext_resource type="PackedScene" uid="uid://bt504iukcmnlm" path="res://Scenes/Shop/3D Shop/shop_item.tscn" id="5_ntlj6"]
+[ext_resource type="Script" uid="uid://bsk3kt2w3xh32" path="res://Scripts/Chair/QTE/qte_controller.gd" id="7_1lcqv"]
 
 [node name="ChairContainer" type="Node3D" unique_id=1088973269]
 
-[node name="Chair" parent="." unique_id=142225171 instance=ExtResource("2_776ly")]
+[node name="Chair" parent="." unique_id=142225171 node_paths=PackedStringArray("qte_controller") instance=ExtResource("2_776ly")]
+qte_controller = NodePath("../QTEController")
 
 [node name="PlayerUI" parent="." unique_id=1040131706 node_paths=PackedStringArray("chair", "money_controller", "camera_controller") instance=ExtResource("3_6aruv")]
 offset_left = 1.0
@@ -71,3 +73,6 @@ script = ExtResource("4_bh1wf")
 chair_cam_pos = NodePath("../ChairCamPos")
 shop_cam_pos = NodePath("../ShopCamPos")
 hover_scale = 2.0
+
+[node name="QTEController" type="Node3D" parent="." unique_id=1098070796]
+script = ExtResource("7_1lcqv")
