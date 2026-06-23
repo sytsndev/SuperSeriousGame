@@ -7,6 +7,7 @@ extends Node3D
 
 var chair_top: MeshInstance3D
 
+var qte_impulse: float = 1080
 var is_qte_active: bool = false
 
 signal spins_complete
@@ -79,10 +80,9 @@ func end_spin_actions(barf: float):
 
 
 func qte_active(active: bool):
-	print(active)
 	is_qte_active = active
 
 
 func handle_qte_success():
-	angular_velocity += 1000
+	angular_velocity = qte_impulse
 	qte_controller.qte_success()

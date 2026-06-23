@@ -34,7 +34,9 @@ func _process(delta: float) -> void:
 	money_label.text = str(Global.money_tracker)
 	barf_meter.value = Global.barf_tracker
 	barf_meter.max_value = Global.barf_max
-	multiplier_label.text = "x" + str(Global.apply_upgrades())
+	#multiplier_label.text = "x" + str(Global.apply_upgrades())
+	multiplier_label.text = str(qte_controller.qte_timer)
+	
 
 
 func show_money_added_label(amount: float, seconds: float = 2.0) -> void:
