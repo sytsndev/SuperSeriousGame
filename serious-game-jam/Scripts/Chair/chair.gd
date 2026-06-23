@@ -29,7 +29,6 @@ func _physics_process(delta: float) -> void:
 		spin_chair()
 	spin(delta)
 	
-#block-comment
 #func spin_duration_for_amount(spin_amount: float) -> float:
 	#var base_spin: float = 360.0
 	#var base_time: float = 1.2
@@ -44,7 +43,6 @@ func _physics_process(delta: float) -> void:
 	#duration = clamp(duration, base_time * 0.8, base_time * 4.0)
 #
 	#return duration
-
 
 func spin(delta: float):
 	if not is_spinning:
