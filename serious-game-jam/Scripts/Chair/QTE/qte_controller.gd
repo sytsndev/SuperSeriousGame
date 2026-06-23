@@ -4,7 +4,7 @@ extends Node
 var qte_active: bool = false
 var qte_timer: float = 0.0
 var qte_delay: float = 1.0
-var qte_length: float = 1.0
+var qte_length: float = 0.25
 var qte_default_length: float = 1.0
 var qte_length_change: float = 0.8
 var qte_success_count: int = 0

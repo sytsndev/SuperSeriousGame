@@ -10,17 +10,20 @@ extends Control
 @onready var multiplier_label: RichTextLabel = %Multiplier
 @onready var enter_shop_button: Button = %EnterShop
 @onready var exit_shop_button: Button = %ExitShop
+@onready var spacebar_prompt: TextureRect = %SpacebarRect
 
 
 @export var chair: Chair
 @export var money_controller: MoneyController
 @export var camera_controller: CameraController
+@export var qte_controller: QTEController
 
 var is_spinning: bool = false
 
 func _ready() -> void:
 	var root = get_tree().root
 	chair.spins_complete.connect(spin_complete)
+	qte_controller.active.connect(toggle_spacebar_prompt)
 	exit_shop_button.visible = false
 	setup_barf_meter()
 	Global.money_added.connect(show_money_added_label)
@@ -89,3 +92,7 @@ func _on_exit_shop_pressed() -> void:
 	exit_shop_button.visible = false
 	enter_shop_button.visible = true
 	camera_controller.swap_camera("chair")
+
+
+func toggle_spacebar_prompt(show: bool):
+	spacebar_prompt.visible = show
