@@ -25,6 +25,7 @@ var barf_mult: float = 7
 #UPGRADES
 var up_chair_grease_count: int = 0 
 var up_delayed_gratification: int = 0
+var up_ghost_kid: int = 0
 
 #UPGRADE MULTS
 var mult_chair_grease: float = 0.1

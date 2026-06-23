@@ -4,6 +4,7 @@ extends Node3D
 enum ItemType { CHAIR_GREASE, 
 DELAYED_GRATIFICATION,
 CROWD,
+GHOST_KID,
 OTHER }
 
 @onready var disabled_mat: StandardMaterial3D = preload("res://Shaders/Materials/disabled_item.tres")
@@ -56,6 +57,8 @@ func on_click():
 		ItemType.CROWD:
 			Global.add_crowd()
 			Global.money_tracker -= price
+		ItemType.GHOST_KID:
+			Global.up_ghost_kid += 1
 		ItemType.OTHER:
 			print("other")
 
