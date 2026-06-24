@@ -106,6 +106,8 @@ func _update_ray_and_check_collision():
 
 
 func hover_item():
+	if curr_hover_item.hover_disabled:
+		return
 	if curr_hover_item.selected_info:
 		curr_hover_item.name_label.visible = true
 		player_ui.shop_hover_tip.visible = false
@@ -120,6 +122,8 @@ func hover_item():
 
 
 func reset_hover_item():
+	if curr_hover_item.hover_disabled:
+		return
 	if curr_hover_item.selected_info:
 		curr_hover_item.name_label.visible = true
 		player_ui.shop_hover_tip.visible = false

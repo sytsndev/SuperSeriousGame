@@ -38,8 +38,12 @@ var is_shop: bool = false
 var start_game: bool = false
 var init_pos: Vector3
 var selected_info: bool = false
+var hover_disabled: bool = false
 
 func _ready() -> void:
+	if item_type == ItemType.SHOP:
+		hover_disabled = true
+		 
 	Global.put_down_info_item.connect(put_down_info_item)
 	init_pos = self.position
 	name_label = %DisplayName
@@ -113,7 +117,7 @@ func on_click():
 			print("other")
 
 func on_left_click():
-	if !has_info or Global.disable_all_shop_items:
+	if !has_info or Global.disable_all_shop_items or !start_game:
 		return
 	pickup_info_item()
 

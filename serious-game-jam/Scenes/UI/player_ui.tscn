@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bawwmcqlxs1v4" path="res://Assets/WIP/UI/BarfMeterEmpty2.png" id="2_t3flm"]
 [ext_resource type="Texture2D" uid="uid://cqgg4cxn7dan7" path="res://Assets/WIP/UI/BarfMeterFilled2.png" id="3_8n2hl"]
 [ext_resource type="Texture2D" uid="uid://djjbro2ynux64" path="res://Assets/WIP/UI/Space_bar.png" id="4_8n2hl"]
-[ext_resource type="Texture2D" uid="uid://d0466kmr8iv1t" path="res://Assets/WIP/UI/ShopClickUI.png" id="5_c4arg"]
+[ext_resource type="Texture2D" uid="uid://dt3x1qurs1dq8" path="res://Assets/WIP/UI/ShopClickUI.png" id="5_c4arg"]
 
 [node name="PlayerUI" type="Control" unique_id=1040131706]
 layout_mode = 3
@@ -151,6 +151,7 @@ texture = ExtResource("5_c4arg")
 
 [node name="InfoContainer" type="Control" parent="." unique_id=626942010]
 unique_name_in_owner = true
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
