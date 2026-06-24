@@ -11,6 +11,7 @@ var base_friction: float = 540.0
 var base_money_amount: float = 0.25
 var money_tracker: float = 0.0
 var gross_money: float = 0.0
+var spin_mutliplier: float = 1.0
 
 
 #amount of people in the crowd (money multiplier)
@@ -19,17 +20,19 @@ var crowd_max: int = 10
 #BARF
 var barf_tracker: float = 0.0
 var barf_max: float = 36000
-var barf_mult: float = 7
+var barf_mult: float = 10
 
 
 #UPGRADES
 var up_chair_grease_count: int = 0 
 var up_delayed_gratification: int = 0
+var up_multiplier: int = 0
 var up_ghost_kid: int = 1
 
 #UPGRADE MULTS
 var mult_chair_grease: float = 0.1
 var mult_delayed_gratification: float = 1.3 #I want this to make barf meter max 2x higher but then 2.3 times more profit
+var mult_multiplier: float = 2.5
 var mult_barf_increase_delayed_gratification: float = 36000
 
 #UPGRADE STATS
@@ -114,3 +117,15 @@ func add_to_barf_tracker(spins: float):
 
 func apply_chair_grease():
 	return up_chair_grease_count * mult_chair_grease
+
+
+func add_multiplier():
+	if up_multiplier > 0:
+		pass
+
+
+func get_mult_per_spin():
+	var mult: float
+	if up_multiplier > 0:
+		pass
+		
