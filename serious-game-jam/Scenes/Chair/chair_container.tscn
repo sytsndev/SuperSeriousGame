@@ -79,14 +79,15 @@ mesh_path = "res://Assets/WIP/Upgrades/ChairGrease.glb"
 show_hover_tip = true
 
 [node name="Multiplier" parent="ShopStand" unique_id=336414347 node_paths=PackedStringArray("camera_controller") instance=ExtResource("5_ntlj6")]
-transform = Transform3D(0.06535224, -2.3283064e-10, -1.110223e-15, 2.3283064e-10, 0.065352246, 1.7347235e-17, -6.661338e-16, 1.3877788e-17, 0.065352134, 0.094278365, 0.24098128, -0.02684784)
+transform = Transform3D(0.065352246, -2.3283064e-10, -1.110223e-15, 3.4924597e-10, 0.06535226, 1.7347235e-17, -6.661338e-16, 1.7347235e-17, 0.065352134, 0.11227998, 0.24066707, -0.02684784)
 visible = false
 camera_controller = NodePath("../../CameraShake/Camera3D")
 item_name = "Multiplier"
 item_info = "Multiplier increases your base multiplier by 0.1"
-item_type = 3
-price = 1000.0
-mesh_path = "res://Assets/WIP/Upgrades/ChairGrease.glb"
+item_type = 4
+price = 100.0
+mesh_path = "res://Assets/WIP/Upgrades/Multuiplier.glb"
+init_rot = Vector3(0, 0, 0)
 show_hover_tip = true
 
 [node name="Play" parent="ShopStand" unique_id=819790179 node_paths=PackedStringArray("camera_controller", "shop_items", "menu_buttons", "shop_button") instance=ExtResource("5_ntlj6")]
