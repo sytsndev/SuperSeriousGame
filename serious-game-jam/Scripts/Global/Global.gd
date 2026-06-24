@@ -25,14 +25,18 @@ var barf_mult: float = 7
 #UPGRADES
 var up_chair_grease_count: int = 0 
 var up_delayed_gratification: int = 0
-var up_ghost_kid: int = 0
+var up_ghost_kid: int = 1
 
 #UPGRADE MULTS
 var mult_chair_grease: float = 0.1
 var mult_delayed_gratification: float = 1.3 #I want this to make barf meter max 2x higher but then 2.3 times more profit
 var mult_barf_increase_delayed_gratification: float = 36000
 
+#UPGRADE STATS
+var ghost_kid_save_chance: float = 0.15
+
 var can_spin: bool = false
+
 
 signal money_added
 signal crowd_added
@@ -47,8 +51,16 @@ func add_money():
 func add_crowd():
 	crowd += 1
 	crowd_added.emit()
+	
+func roll_ghost_kid_save() -> bool:
+	return randf() < get_ghost_kid_save_chance()
 
-
+func get_ghost_kid_save_chance() -> float:
+	if up_ghost_kid <= 0:
+		return 0.0
+	# each kid independently rolls 15%; saved if ANY of them hit
+	return 1.0 - pow(1.0 - ghost_kid_save_chance, up_ghost_kid)
+	
 func get_spin_force() -> float:
 	var force = base_spin_force
 	return force

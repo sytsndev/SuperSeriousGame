@@ -13,6 +13,7 @@ var qte_restart: bool = false
 var qte_cancelled: bool = false        # NEW
 
 signal active
+signal ghost_save
 
 func init_qte():
 	qte_cancelled = false               # NEW: clear any leftover cancel from last spin
@@ -32,16 +33,7 @@ func _physics_process(delta: float) -> void:
 	if qte_active and !qte_restart:
 		qte_timer -= delta
 		if qte_timer <= 0.0:
-			qte_break()
-
-
-func qte_break():
-	qte_active = false
-	qte_timer = 0.0
-	qte_success_count = 0
-	qte_length = qte_default_length
-	active.emit(false)
-
+			cancel_qte()
 
 func qte_success():
 	qte_success_count += 1
@@ -54,6 +46,10 @@ func qte_success():
 
 func cancel_qte():                      # NEW: kills the whole chain
 	qte_cancelled = true
+	
+	if Global.roll_ghost_kid_save():
+		ghost_save.emit(qte_success())
+		return
 	qte_active = false
 	qte_timer = 0.0
 	qte_success_count = 0
