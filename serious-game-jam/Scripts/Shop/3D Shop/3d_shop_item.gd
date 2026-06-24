@@ -75,7 +75,7 @@ func on_click():
 		return
 	match item_type:
 		ItemType.CHAIR_GREASE:
-			Global.up_chair_grease_count += 1
+			Global.add_chair_grease()
 			Global.money_tracker -= price
 		ItemType.DELAYED_GRATIFICATION:
 			Global.up_delayed_gratification += 1

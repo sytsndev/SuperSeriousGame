@@ -40,6 +40,12 @@ var can_spin: bool = false
 
 signal money_added
 signal crowd_added
+signal chair_grease_added
+
+
+func add_chair_grease():
+	up_chair_grease_count += 1
+	chair_grease_added.emit()
 
 func add_money():
 	var money_to_add = snapped(Global.get_money_for_spin(), 0.01) 
@@ -72,7 +78,7 @@ func get_friction() -> float:
 
 
 func get_money_for_spin():
-	return base_money_amount * apply_crowd() * apply_upgrades()
+	return base_money_amount * apply_crowd()
 
 
 func apply_upgrades():
@@ -102,3 +108,7 @@ func apply_crowd():
 
 func add_to_barf_tracker(spins: float):
 	barf_tracker += spins
+
+
+func apply_chair_grease():
+	return up_chair_grease_count * mult_chair_grease
