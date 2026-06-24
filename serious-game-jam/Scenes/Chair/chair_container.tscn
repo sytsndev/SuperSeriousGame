@@ -75,7 +75,8 @@ item_name = "Ghost Kid"
 item_info = "Ghost kid upgrades the likelyhood of ghost kid saving your spin by 10%"
 item_type = 3
 price = 100.0
-mesh_path = "res://Assets/WIP/Upgrades/ChairGrease.glb"
+mesh_path = "res://Assets/WIP/Upgrades/GhostKid.glb"
+init_rot = Vector3(0, 9, 0)
 show_hover_tip = true
 
 [node name="Multiplier" parent="ShopStand" unique_id=336414347 node_paths=PackedStringArray("camera_controller") instance=ExtResource("5_ntlj6")]
@@ -93,7 +94,8 @@ show_hover_tip = true
 [node name="Play" parent="ShopStand" unique_id=819790179 node_paths=PackedStringArray("camera_controller", "shop_items", "menu_buttons", "shop_button") instance=ExtResource("5_ntlj6")]
 transform = Transform3D(0.06535226, -2.3283064e-10, -1.110223e-15, 3.4924597e-10, 0.06535227, 1.7347235e-17, -8.881784e-16, 1.3877788e-17, 0.065352134, -0.04329714, 0.24338272, 0.09343469)
 camera_controller = NodePath("../../CameraShake/Camera3D")
-item_type = 4
+item_name = "Play"
+item_type = 5
 price = 0.0
 mesh_path = "res://Assets/WIP/Upgrades/PlayButton.glb"
 init_rot = Vector3(0, 0, 0)
@@ -105,7 +107,8 @@ has_info = false
 [node name="Exit" parent="ShopStand" unique_id=2062792132 node_paths=PackedStringArray("camera_controller") instance=ExtResource("5_ntlj6")]
 transform = Transform3D(0.06535226, -2.3283064e-10, -1.110223e-15, 3.4924597e-10, 0.06535227, 1.7347235e-17, -8.881784e-16, 1.3877788e-17, 0.065352134, 0.094278365, 0.24098128, 0.094311595)
 camera_controller = NodePath("../../CameraShake/Camera3D")
-item_type = 5
+item_name = "Quit"
+item_type = 6
 price = 0.0
 mesh_path = "res://Assets/WIP/Upgrades/Blocked.glb"
 init_rot = Vector3(0, 80, 0)
@@ -142,7 +145,7 @@ hover_scale = 2.0
 transform = Transform3D(0.32671154, -0.0057027712, 0, 0.005702771, 0.32671157, 0, 0, 0, 0.32676068, 1.1166632, 0, -0.9799359)
 visible = false
 camera_controller = NodePath("..")
-item_type = 6
+item_type = 7
 price = 0.0
 mesh_path = "res://Assets/WIP/Shop/ShopArrow.glb"
 init_rot = Vector3(0, 45, 0)
