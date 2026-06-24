@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bawwmcqlxs1v4" path="res://Assets/WIP/UI/BarfMeterEmpty2.png" id="2_t3flm"]
 [ext_resource type="Texture2D" uid="uid://cqgg4cxn7dan7" path="res://Assets/WIP/UI/BarfMeterFilled2.png" id="3_8n2hl"]
 [ext_resource type="Texture2D" uid="uid://djjbro2ynux64" path="res://Assets/WIP/UI/Space_bar.png" id="4_8n2hl"]
+[ext_resource type="Texture2D" uid="uid://d0466kmr8iv1t" path="res://Assets/WIP/UI/ShopClickUI.png" id="5_c4arg"]
 
 [node name="PlayerUI" type="Control" unique_id=1040131706]
 layout_mode = 3
@@ -38,11 +39,17 @@ text = "Spin Chair"
 
 [node name="SpinAmount" type="LineEdit" parent="MainUIContainer" unique_id=619872378]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 1035.0
-offset_top = 969.0
-offset_right = 1205.0
-offset_bottom = 1037.0
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -85.0
+offset_top = -68.0
+offset_right = 85.0
+grow_horizontal = 2
+grow_vertical = 0
 placeholder_text = "Ex) 360.0"
 
 [node name="MoneyLabel" type="RichTextLabel" parent="MainUIContainer" unique_id=47755402]
@@ -123,5 +130,23 @@ offset_bottom = 233.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_8n2hl")
+
+[node name="ShopHoverTip" type="TextureRect" parent="MainUIContainer" unique_id=1305964044]
+unique_name_in_owner = true
+visible = false
+texture_filter = 3
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -269.5
+offset_top = -292.0
+offset_right = 266.5
+offset_bottom = -220.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("5_c4arg")
 
 [connection signal="pressed" from="MainUIContainer/SpinChair" to="." method="_on_spin_chair_pressed"]

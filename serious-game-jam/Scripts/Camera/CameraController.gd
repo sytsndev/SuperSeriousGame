@@ -6,6 +6,7 @@ extends Camera3D
 @export var shop_cam_pos: Marker3D
 
 @export var shop_button: ShopItem3D
+@export var player_ui: PlayerUI
 
 var curr_camera: String
 var curr_hover_item: ShopItem3D = null
@@ -104,6 +105,9 @@ func _update_ray_and_check_collision():
 
 
 func hover_item():
+	if curr_hover_item.show_hover_tip:
+		player_ui.shop_hover_tip.visible = true
+	curr_hover_item.name_label.visible = true
 	var tween = create_tween()
 	tween.set_trans(Tween.TRANS_LINEAR)
 	tween.set_ease(Tween.EASE_IN_OUT)
@@ -112,6 +116,9 @@ func hover_item():
 
 
 func reset_hover_item():
+	if curr_hover_item.show_hover_tip:
+		player_ui.shop_hover_tip.visible = false
+	curr_hover_item.name_label.visible = false
 	var tween = create_tween()
 	tween.set_trans(Tween.TRANS_LINEAR)
 	tween.set_ease(Tween.EASE_IN_OUT)

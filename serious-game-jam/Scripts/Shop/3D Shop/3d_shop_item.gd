@@ -11,8 +11,9 @@ SHOP,
 OTHER }
 
 @onready var disabled_mat: StandardMaterial3D = preload("res://Shaders/Materials/disabled_item.tres")
-
+@export var name_label: Label3D
 @export var camera_controller: CameraController
+@export var item_name: String
 @export var item_type: ItemType 
 @export var price: float = 5.0
 @export var mesh_path: String
@@ -21,6 +22,7 @@ OTHER }
 @export var shop_items: Array[ShopItem3D]
 @export var menu_buttons: Array[ShopItem3D]
 @export var shop_button: ShopItem3D
+@export var show_hover_tip: bool
 
 var blocked_mesh_path = "res://Assets/WIP/Upgrades/Blocked.glb"
 var mesh: MeshInstance3D
@@ -33,6 +35,9 @@ var is_shop: bool = false
 var start_game: bool = false
 
 func _ready() -> void:
+	name_label = %DisplayName
+	if item_name:
+		name_label.text = item_name
 	if shop_items.size() > 0:
 		for item in shop_items:
 			item.item_disabled = true

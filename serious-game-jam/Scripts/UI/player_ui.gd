@@ -9,6 +9,7 @@ extends Control
 @onready var ui_container: Control = %MainUIContainer
 @onready var multiplier_label: RichTextLabel = %Multiplier
 @onready var spacebar_prompt: TextureRect = %SpacebarRect
+@onready var shop_hover_tip: TextureRect = %ShopHoverTip
 
 
 @export var chair: Chair
