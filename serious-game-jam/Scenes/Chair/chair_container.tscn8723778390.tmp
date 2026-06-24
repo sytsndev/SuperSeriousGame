@@ -7,13 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://dqpxluh4k6qso" path="res://Assets/WIP/Shop/ShopStand.glb" id="4_f3tkd"]
 [ext_resource type="PackedScene" uid="uid://bt504iukcmnlm" path="res://Scenes/Shop/3D Shop/shop_item.tscn" id="5_ntlj6"]
 [ext_resource type="Script" uid="uid://bsk3kt2w3xh32" path="res://Scripts/Chair/QTE/qte_controller.gd" id="7_1lcqv"]
-[ext_resource type="Script" uid="uid://bofq3ujm7pde4" path="res://Scripts/Camera/camera_shake.gd" id="7_jtpjn"]
 
 [node name="ChairContainer" type="Node3D" unique_id=1088973269]
 
-[node name="Chair" parent="." unique_id=142225171 node_paths=PackedStringArray("qte_controller", "camera_chake") instance=ExtResource("2_776ly")]
+[node name="Chair" parent="." unique_id=142225171 node_paths=PackedStringArray("qte_controller") instance=ExtResource("2_776ly")]
 qte_controller = NodePath("../QTEController")
-camera_chake = NodePath("../CameraShake")
 
 [node name="PlayerUI" parent="." unique_id=1040131706 node_paths=PackedStringArray("chair", "money_controller", "camera_controller", "qte_controller") instance=ExtResource("3_6aruv")]
 offset_left = 1.0
@@ -22,7 +20,7 @@ offset_right = 1.0
 offset_bottom = 3.0
 chair = NodePath("../Chair")
 money_controller = NodePath("../MoneyController")
-camera_controller = NodePath("../CameraShake/Camera3D")
+camera_controller = NodePath("../Camera3D")
 qte_controller = NodePath("../QTEController")
 
 [node name="MoneyController" parent="." unique_id=2059934017 node_paths=PackedStringArray("chair") instance=ExtResource("4_776ly")]
@@ -71,14 +69,14 @@ mesh_path = "res://Assets/WIP/Upgrades/ChairGrease.glb"
 
 [node name="Play" parent="ShopStand" unique_id=819790179 node_paths=PackedStringArray("camera_controller", "shop_items", "menu_buttons", "shop_button") instance=ExtResource("5_ntlj6")]
 transform = Transform3D(0.06535226, -2.3283064e-10, -1.110223e-15, 3.4924597e-10, 0.06535227, 1.7347235e-17, -8.881784e-16, 1.3877788e-17, 0.065352134, -0.04329714, 0.24338272, 0.09343469)
-camera_controller = NodePath("../../CameraShake/Camera3D")
+camera_controller = NodePath("../../Camera3D")
 item_type = 4
 price = 0.0
 mesh_path = "res://Assets/WIP/Upgrades/PlayButton.glb"
 init_rot = Vector3(0, 0, 0)
 shop_items = [NodePath("../ShopItem4"), NodePath("../ShopItem5"), NodePath("../Crowd"), NodePath("../Pills"), NodePath("../Grease")]
 menu_buttons = [NodePath("../Exit"), NodePath(".")]
-shop_button = NodePath("../../CameraShake/Camera3D/ShopButton")
+shop_button = NodePath("../../Camera3D/ShopButton")
 
 [node name="Exit" parent="ShopStand" unique_id=2062792132 instance=ExtResource("5_ntlj6")]
 transform = Transform3D(0.06535226, -2.3283064e-10, -1.110223e-15, 3.4924597e-10, 0.06535227, 1.7347235e-17, -8.881784e-16, 1.3877788e-17, 0.065352134, 0.094278365, 0.24098128, 0.094311595)
@@ -93,24 +91,15 @@ transform = Transform3D(0.7071068, -0.18301271, 0.6830127, 0, 0.9659259, 0.25881
 [node name="ShopCamPos" type="Marker3D" parent="." unique_id=720151566]
 transform = Transform3D(-4.371139e-08, 0.25881904, -0.9659259, 0, 0.9659259, 0.25881904, 1, 1.131334e-08, -4.222196e-08, 5.2905254, 1.9798982, 2.2242205)
 
-[node name="QTEController" type="Node3D" parent="." unique_id=1098070796]
-script = ExtResource("7_1lcqv")
-
-[node name="CameraShake" type="Node3D" parent="." unique_id=109152060]
-script = ExtResource("7_jtpjn")
-shake_strength = 0.01
-shake_time = 0.1
-
-[node name="Camera3D" type="Camera3D" parent="CameraShake" unique_id=2053373784 node_paths=PackedStringArray("chair_cam_pos", "shop_cam_pos", "shop_button")]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=2053373784 node_paths=PackedStringArray("chair_cam_pos", "shop_cam_pos")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2923267, 0)
 fov = 90.0
 script = ExtResource("4_bh1wf")
-chair_cam_pos = NodePath("../../ChairCamPos")
-shop_cam_pos = NodePath("../../ShopCamPos")
-shop_button = NodePath("ShopButton")
+chair_cam_pos = NodePath("../ChairCamPos")
+shop_cam_pos = NodePath("../ShopCamPos")
 hover_scale = 2.0
 
-[node name="ShopButton" parent="CameraShake/Camera3D" unique_id=1097290522 node_paths=PackedStringArray("camera_controller", "shop_button") instance=ExtResource("5_ntlj6")]
+[node name="ShopButton" parent="Camera3D" unique_id=1097290522 node_paths=PackedStringArray("camera_controller", "shop_button") instance=ExtResource("5_ntlj6")]
 transform = Transform3D(0.32671154, -0.0057027712, 0, 0.005702771, 0.32671157, 0, 0, 0, 0.32676068, 1.1166632, 0, -0.9799359)
 visible = false
 camera_controller = NodePath("..")
@@ -119,3 +108,6 @@ price = 0.0
 mesh_path = "res://Assets/WIP/Shop/ShopArrow.glb"
 init_rot = Vector3(0, 45, 0)
 shop_button = NodePath(".")
+
+[node name="QTEController" type="Node3D" parent="." unique_id=1098070796]
+script = ExtResource("7_1lcqv")

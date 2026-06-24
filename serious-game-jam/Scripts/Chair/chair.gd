@@ -2,8 +2,11 @@ class_name Chair
 extends Node3D
 
 @export var qte_controller: QTEController
+@export var camera_chake: CameraShake
 
 @export var path: String
+@export var child: Node3D
+var animation_player: AnimationPlayer
 
 var chair_top: MeshInstance3D
 
@@ -21,6 +24,7 @@ var accumulated_spins: float = 0.0 #total number of full 360 degree spins
 func _ready() -> void:
 	chair_top = get_node(path)
 	qte_controller.active.connect(qte_active)
+	animation_player = child.find_child("AnimationPlayer")
 
 
 func spin_chair(force_override: float = -1.0):
@@ -29,14 +33,19 @@ func spin_chair(force_override: float = -1.0):
 	accumulated_spins = 0.0
 	is_spinning = true
 	qte_controller.init_qte()
+	var animation = animation_player.get_animation("spin")
+	animation.loop_mode = Animation.LOOP_LINEAR
+	animation_player.play("spin")
 
 
 func _physics_process(delta: float) -> void:
-	if Input.is_action_just_pressed("spin") and !is_spinning:
-		spin_chair()
-	elif Input.is_action_just_pressed("spin") and is_qte_active:
-		handle_qte_success()
-		
+	rotate_childe()
+	if Global.can_spin:
+		if Input.is_action_just_pressed("spin") and !is_spinning:
+			spin_chair()
+		elif Input.is_action_just_pressed("spin") and is_qte_active:
+			#print()
+			camera_chake.trigger_shake(handle_qte_success() * .01)
 	spin(delta)
 	
 #func spin_duration_for_amount(spin_amount: float) -> float:
@@ -71,7 +80,8 @@ func spin(delta: float):
 		angular_velocity = 0.0
 		is_spinning = false
 		end_spin_actions(accumulated_spins)
-		print(accumulated_spins)
+		animation_player.stop()
+
 
 func end_spin_actions(barf: float):
 	Global.add_to_barf_tracker(barf)
@@ -85,4 +95,8 @@ func qte_active(active: bool):
 
 func handle_qte_success():
 	angular_velocity = qte_impulse
-	qte_controller.qte_success()
+	return qte_controller.qte_success()
+
+
+func rotate_childe():
+	child.global_rotation = chair_top.global_rotation 

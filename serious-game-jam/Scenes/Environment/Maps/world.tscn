@@ -810,7 +810,7 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -10.
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -10.730179, 0.39974976, -55.652767)
 
 [node name="slider" parent="Benches" unique_id=1241049081 instance=ExtResource("9_n21hv")]
-transform = Transform3D(0.6855175, 0, -0.72805613, 0, 1, 0, 0.72805613, 0, 0.6855175, 6.295701, 0.5542073, -9.244662)
+transform = Transform3D(0.6855175, 0, -0.72805613, 0, 1, 0, 0.72805613, 0, 0.6855175, 11.034304, 0.55420685, -9.19004)
 
 [node name="swings" parent="Benches" unique_id=1913141118 instance=ExtResource("2_5iqf7")]
 transform = Transform3D(0.99984825, 0, -0.017421795, 0, 1, 0, 0.017421795, 0, 0.99984825, -7.589366, 0.4990673, -3.1937418)

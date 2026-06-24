@@ -45,3 +45,4 @@ func qte_success():
 	qte_restart = true
 	active.emit(false)
 	init_qte()
+	return qte_success_count

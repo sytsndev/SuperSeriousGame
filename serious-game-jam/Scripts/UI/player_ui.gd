@@ -8,8 +8,6 @@ extends Control
 @onready var barf_meter: TextureProgressBar = %BarfMeter
 @onready var ui_container: Control = %MainUIContainer
 @onready var multiplier_label: RichTextLabel = %Multiplier
-@onready var enter_shop_button: Button = %EnterShop
-@onready var exit_shop_button: Button = %ExitShop
 @onready var spacebar_prompt: TextureRect = %SpacebarRect
 
 
@@ -24,12 +22,15 @@ func _ready() -> void:
 	var root = get_tree().root
 	chair.spins_complete.connect(spin_complete)
 	qte_controller.active.connect(toggle_spacebar_prompt)
-	exit_shop_button.visible = false
 	setup_barf_meter()
 	Global.money_added.connect(show_money_added_label)
 
 
 func _process(delta: float) -> void:
+	if Global.can_spin:
+		visible = true
+	else:
+		visible = false
 	spin_chair_button.disabled = is_spinning
 	money_label.text = str(Global.money_tracker)
 	barf_meter.value = Global.barf_tracker
@@ -82,18 +83,6 @@ func _on_spin_chair_pressed() -> void:
 		Global.money_tracker += int(spin_chair_input.text)
 		is_spinning = true
 		chair.spin_chair(int(spin_chair_input.text))
-
-
-func _on_enter_shop_pressed() -> void:
-	enter_shop_button.visible = false
-	exit_shop_button.visible = true
-	camera_controller.swap_camera("shop")
-
-
-func _on_exit_shop_pressed() -> void:
-	exit_shop_button.visible = false
-	enter_shop_button.visible = true
-	camera_controller.swap_camera("chair")
 
 
 func toggle_spacebar_prompt(show: bool):

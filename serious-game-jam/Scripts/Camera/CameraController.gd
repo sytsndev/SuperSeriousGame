@@ -5,12 +5,15 @@ extends Camera3D
 @export var chair_cam_pos: Marker3D
 @export var shop_cam_pos: Marker3D
 
+@export var shop_button: ShopItem3D
+
 var curr_camera: String
 var curr_hover_item: ShopItem3D = null
 var last_hover_area: Area3D = null
 var original_hover_scale: Vector3 = Vector3.ONE
 var start_pos: Vector3
 var end_pos: Vector3
+var sign_pos: Vector3 = Vector3(1.117, 0.0, -0.98)
 
 @export var hover_offset: float = 0.02
 @export var hover_scale: float = 1.01
@@ -19,10 +22,13 @@ var ray_length: float = 100.0
 
 
 func _ready() -> void:
-	global_position = chair_cam_pos.global_position
-	global_rotation = chair_cam_pos.global_rotation
-	
-	curr_camera = "chair"
+	global_position = shop_cam_pos.global_position
+	global_rotation = shop_cam_pos.global_rotation
+	curr_camera = "shop"
+
+
+func _process(delta: float) -> void:
+	set_shop_button_pos()
 
 
 func _input(event):
@@ -102,7 +108,6 @@ func hover_item():
 	tween.set_trans(Tween.TRANS_LINEAR)
 	tween.set_ease(Tween.EASE_IN_OUT)
 	original_hover_scale = curr_hover_item.scale
-	print(end_pos)
 	tween.tween_property(curr_hover_item, "global_position", end_pos, 0.1)
 
 
@@ -111,3 +116,7 @@ func reset_hover_item():
 	tween.set_trans(Tween.TRANS_LINEAR)
 	tween.set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(curr_hover_item, "global_position", start_pos, 0.1)
+
+
+func set_shop_button_pos():
+	shop_button.position = sign_pos

@@ -2,6 +2,7 @@ class_name Playground
 extends Node3D
 
 @export var crowd_spawn_node: Node3D
+@export var child_models: Array[String]
 @export var crowd_member: PackedScene
 
 var crowd_spawns: Array[Marker3D]
@@ -25,7 +26,11 @@ func setup_crowd():
 
 
 func spawn_child(index: int = -1):
-	var instance = crowd_member.instantiate()
+	var instance = load(child_models[randi_range(1, child_models.size() - 1)]).instantiate()
+	var animation_player: AnimationPlayer = instance.find_child("AnimationPlayer")
+	var animation = animation_player.get_animation("idle")
+	animation.loop_mode = Animation.LOOP_LINEAR
+	animation_player.play("idle")
 	if index >= 0:
 		crowd_spawns[index].add_child(instance)
 	else:

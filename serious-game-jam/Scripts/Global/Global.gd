@@ -30,7 +30,9 @@ var up_ghost_kid: int = 0
 #UPGRADE MULTS
 var mult_chair_grease: float = 0.1
 var mult_delayed_gratification: float = 1.3 #I want this to make barf meter max 2x higher but then 2.3 times more profit
-var mult_barf_increase_delayed_gratification: float = 36000 
+var mult_barf_increase_delayed_gratification: float = 36000
+
+var can_spin: bool = false
 
 signal money_added
 signal crowd_added
