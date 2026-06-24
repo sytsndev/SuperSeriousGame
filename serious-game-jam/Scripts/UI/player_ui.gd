@@ -10,6 +10,8 @@ extends Control
 @onready var multiplier_label: RichTextLabel = %Multiplier
 @onready var spacebar_prompt: TextureRect = %SpacebarRect
 @onready var shop_hover_tip: TextureRect = %ShopHoverTip
+@onready var info_container: Control = %InfoContainer
+@onready var info_label: RichTextLabel = %InfoLabel
 
 
 @export var chair: Chair
@@ -28,7 +30,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if Global.can_spin:
+	if Global.can_spin or Global.disable_all_shop_items:
 		visible = true
 	else:
 		visible = false
@@ -88,3 +90,13 @@ func _on_spin_chair_pressed() -> void:
 
 func toggle_spacebar_prompt(show: bool):
 	spacebar_prompt.visible = show
+
+
+func show_info_label(text: String):
+	info_container.visible = true
+	info_label.text = text
+
+
+func hide_info_label():
+	Global.put_down_info_item.emit()
+	info_container.visible = false

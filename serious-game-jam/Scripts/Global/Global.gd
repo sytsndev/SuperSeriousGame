@@ -36,7 +36,9 @@ var mult_barf_increase_delayed_gratification: float = 36000
 var ghost_kid_save_chance: float = 0.15
 
 var can_spin: bool = false
+var disable_all_shop_items: bool = false
 
+signal put_down_info_item
 
 signal money_added
 signal crowd_added

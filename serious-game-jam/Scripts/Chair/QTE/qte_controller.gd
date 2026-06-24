@@ -14,7 +14,7 @@ var qte_cancelled: bool = false
 
 signal active
 signal ghost_save
-
+signal show_info
 
 func _ready() -> void:
 	qte_length = qte_length_upgrade_applied()

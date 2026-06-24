@@ -35,10 +35,11 @@ func _process(delta: float) -> void:
 func _input(event):
 	if event is InputEventMouseMotion or event is InputEventMouseButton:
 		_update_ray_and_check_collision()
-	if Input.is_action_just_pressed("action_1"):
-		if curr_hover_item:
+	if curr_hover_item:
+		if Input.is_action_just_pressed("action_1"):
 			curr_hover_item.on_click()
-
+		if Input.is_action_just_pressed("action2"):
+			curr_hover_item.on_left_click()
 
 func swap_camera(camera_pos: String):
 	match camera_pos:
@@ -105,17 +106,24 @@ func _update_ray_and_check_collision():
 
 
 func hover_item():
+	if curr_hover_item.selected_info:
+		curr_hover_item.name_label.visible = true
+		player_ui.shop_hover_tip.visible = false
+		return
 	if curr_hover_item.show_hover_tip:
 		player_ui.shop_hover_tip.visible = true
 	curr_hover_item.name_label.visible = true
 	var tween = create_tween()
 	tween.set_trans(Tween.TRANS_LINEAR)
 	tween.set_ease(Tween.EASE_IN_OUT)
-	original_hover_scale = curr_hover_item.scale
 	tween.tween_property(curr_hover_item, "global_position", end_pos, 0.1)
 
 
 func reset_hover_item():
+	if curr_hover_item.selected_info:
+		curr_hover_item.name_label.visible = true
+		player_ui.shop_hover_tip.visible = false
+		return
 	if curr_hover_item.show_hover_tip:
 		player_ui.shop_hover_tip.visible = false
 	curr_hover_item.name_label.visible = false

@@ -14,6 +14,7 @@ OTHER }
 @export var name_label: Label3D
 @export var camera_controller: CameraController
 @export var item_name: String
+@export var item_info: String
 @export var item_type: ItemType 
 @export var price: float = 5.0
 @export var mesh_path: String
@@ -23,6 +24,8 @@ OTHER }
 @export var menu_buttons: Array[ShopItem3D]
 @export var shop_button: ShopItem3D
 @export var show_hover_tip: bool
+@export var has_info: bool = true
+@export var info_pos: Vector3 = Vector3(0.037, 0.348, 0.14)
 
 var blocked_mesh_path = "res://Assets/WIP/Upgrades/Blocked.glb"
 var mesh: MeshInstance3D
@@ -33,8 +36,12 @@ var item_blocked: bool = false
 var shop_rotating: bool
 var is_shop: bool = false
 var start_game: bool = false
+var init_pos: Vector3
+var selected_info: bool = false
 
 func _ready() -> void:
+	Global.put_down_info_item.connect(put_down_info_item)
+	init_pos = self.position
 	name_label = %DisplayName
 	if item_name:
 		name_label.text = item_name
@@ -62,10 +69,16 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	if Global.disable_all_shop_items:
+		selected_info = true
+		name_label.visible = false
+	if !Global.disable_all_shop_items:
+		selected_info = false
 	if !start_game:
 		return
 	if check_disabled() and !item_blocked:
-		disable()
+		if !Global.disable_all_shop_items:
+			disable()
 	else:
 		enable()
 
@@ -99,6 +112,33 @@ func on_click():
 		ItemType.OTHER:
 			print("other")
 
+func on_left_click():
+	if !has_info or Global.disable_all_shop_items:
+		return
+	pickup_info_item()
+
+
+func pickup_info_item():
+	Global.disable_all_shop_items = true
+	for i in range(mesh.get_surface_override_material_count()):
+		mesh.set_surface_override_material(i, orig_mat)
+	camera_controller.player_ui.show_info_label(item_info)
+	selected_info = true
+	var tween = create_tween()
+	tween.set_trans(Tween.TRANS_LINEAR)
+	tween.set_ease(Tween.EASE_OUT_IN)
+	tween.tween_property(self, "position", info_pos, 0.25)
+
+
+func put_down_info_item():
+	var tween = create_tween()
+	tween.set_trans(Tween.TRANS_LINEAR)
+	tween.set_ease(Tween.EASE_OUT_IN)
+	tween.tween_property(self, "position", init_pos, 0.25)
+	await tween.finished
+	Global.disable_all_shop_items = false
+	selected_info = false
+	
 
 func check_disabled():
 	if Global.money_tracker < price or Global.money_tracker == 0.0:
