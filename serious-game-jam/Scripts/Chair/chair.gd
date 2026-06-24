@@ -2,7 +2,7 @@ class_name Chair
 extends Node3D
 
 @export var qte_controller: QTEController
-@export var camera_chake: CameraShake
+@export var camera_shake: CameraShake
 
 @export var path: String
 @export var child: Node3D
@@ -10,7 +10,7 @@ var animation_player: AnimationPlayer
 
 var chair_top: MeshInstance3D
 
-var qte_impulse: float = 1080
+var qte_impulse: float = Global.base_spin_force
 var is_qte_active: bool = false
 
 signal spins_complete
@@ -40,12 +40,13 @@ func spin_chair(force_override: float = -1.0):
 
 func _physics_process(delta: float) -> void:
 	rotate_childe()
-	if Global.can_spin:
-		if Input.is_action_just_pressed("spin") and !is_spinning:
+	if Global.can_spin and Input.is_action_just_pressed("spin"):
+		if not is_spinning:
 			spin_chair()
-		elif Input.is_action_just_pressed("spin") and is_qte_active:
-			#print()
-			camera_chake.trigger_shake(handle_qte_success() * .01)
+		elif is_qte_active:
+			camera_shake.trigger_shake(handle_qte_success() * 0.01)
+		else:
+			qte_controller.cancel_qte()   # mistimed press → end the QTE
 	spin(delta)
 	
 #func spin_duration_for_amount(spin_amount: float) -> float:
@@ -92,7 +93,10 @@ func end_spin_actions(barf: float):
 func qte_active(active: bool):
 	is_qte_active = active
 
-
+func handle_qte_failure():
+	print("QTE FAILED YOU SUCK")
+	return qte_controller.qte_break()
+	
 func handle_qte_success():
 	angular_velocity = qte_impulse
 	return qte_controller.qte_success()

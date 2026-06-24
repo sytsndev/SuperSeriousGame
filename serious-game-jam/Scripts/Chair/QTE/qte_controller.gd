@@ -10,11 +10,15 @@ var qte_default_length: float = 1.0
 var qte_length_change: float = 0.8
 var qte_success_count: int = 0
 var qte_restart: bool = false
+var qte_cancelled: bool = false        # NEW
 
 signal active
 
 func init_qte():
+	qte_cancelled = false               # NEW: clear any leftover cancel from last spin
 	await get_tree().create_timer(qte_delay_low, qte_delay_high).timeout
+	if qte_cancelled:                   # NEW: a mistimed press happened during the wait
+		return                          # so bail out — don't open a window
 	qte_restart = false
 	start_qte()
 
@@ -46,3 +50,12 @@ func qte_success():
 	active.emit(false)
 	init_qte()
 	return qte_success_count
+
+
+func cancel_qte():                      # NEW: kills the whole chain
+	qte_cancelled = true
+	qte_active = false
+	qte_timer = 0.0
+	qte_success_count = 0
+	qte_length = qte_default_length
+	active.emit(false)
