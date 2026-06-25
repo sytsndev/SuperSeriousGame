@@ -48,6 +48,7 @@ signal put_down_info_item
 signal money_added
 signal crowd_added
 signal chair_grease_added
+signal mult_increase
 
 
 func add_chair_grease():
@@ -142,7 +143,6 @@ func add_multiplier():
 	if curr_multiplier == 0:
 		curr_multiplier = spin_mutliplier
 	curr_multiplier += get_mult_per_spin()
-	print(curr_multiplier)
 
 
 func get_mult_per_spin():
@@ -150,13 +150,14 @@ func get_mult_per_spin():
 	if up_multiplier > 0:
 		if curr_multiplier > spin_mutliplier + (up_multiplier * mult_multiplier):
 			var ran_num = randi_range(0, 3)
-			print(ran_num)
 			if ran_num == 0:
 				mult += up_multiplier * mult_multiplier
+				mult_increase.emit()
 				return mult
 			else:
 				return mult
 		mult += up_multiplier * mult_multiplier
+		mult_increase.emit()
 	return mult
 
 

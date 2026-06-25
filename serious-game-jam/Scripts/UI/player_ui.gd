@@ -27,6 +27,7 @@ func _ready() -> void:
 	qte_controller.active.connect(toggle_spacebar_prompt)
 	setup_barf_meter()
 	Global.money_added.connect(show_money_added_label)
+	Global.mult_increase.connect(mult_juice)
 
 
 func _process(delta: float) -> void:
@@ -38,8 +39,7 @@ func _process(delta: float) -> void:
 	money_label.text = "$" + str(Global.money_tracker)
 	barf_meter.value = Global.barf_tracker
 	barf_meter.max_value = Global.barf_max
-	multiplier_label.text = str(Global.curr_multiplier)
-	#multiplier_label.text = "x" + str(Global.apply_upgrades())
+	multiplier_label.text = "x" + str(Global.curr_multiplier)
 	
 
 
@@ -102,3 +102,18 @@ func hide_info_label():
 	ui_container.visible = true
 	Global.put_down_info_item.emit()
 	info_container.visible = false
+
+
+var mult_flip := false
+
+func mult_juice():
+	mult_flip = !mult_flip
+	var target_angle = deg_to_rad(12.0 if mult_flip else -12.0)
+
+	var t = create_tween()
+	t.tween_property(multiplier_label, "rotation", target_angle, 0.06)
+	t.tween_property(multiplier_label, "rotation", 0.0, 0.08)
+
+	var current_size = multiplier_label.get_theme_font_size("normal_font_size")
+	multiplier_label.add_theme_font_size_override("normal_font_size", current_size + 8)
+	t.tween_property(multiplier_label, "rotation", 0.0, 0.08)
