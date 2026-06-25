@@ -12,7 +12,6 @@ func _ready():
 
 func trigger_shake(strength_mult: float):
 	shake_strength = strength_mult
-	print("shake", shake_strength)
 	shake_timer = shake_time
 
 func _process(delta):

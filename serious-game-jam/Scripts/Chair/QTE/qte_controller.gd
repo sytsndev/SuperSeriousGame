@@ -43,7 +43,6 @@ func _physics_process(delta: float) -> void:
 
 
 func qte_success():
-	print(qte_length)
 	qte_success_count += 1
 	qte_length *= qte_length_change
 	qte_restart = true

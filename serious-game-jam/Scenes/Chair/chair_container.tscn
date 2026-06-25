@@ -86,7 +86,7 @@ camera_controller = NodePath("../../CameraShake/Camera3D")
 item_name = "Multiplier"
 item_info = "Multiplier increases your base multiplier by 0.1"
 item_type = 4
-price = 100.0
+price = 1000.0
 mesh_path = "res://Assets/WIP/Upgrades/Multuiplier.glb"
 init_rot = Vector3(0, 0, 0)
 show_hover_tip = true
@@ -99,8 +99,8 @@ item_type = 5
 price = 0.0
 mesh_path = "res://Assets/WIP/Upgrades/PlayButton.glb"
 init_rot = Vector3(0, 0, 0)
-shop_items = [NodePath("../Multiplier"), NodePath("../GhostKid"), NodePath("../Crowd"), NodePath("../Pills"), NodePath("../Grease")]
-menu_buttons = [NodePath("../Exit"), NodePath(".")]
+shop_items = [NodePath("../Grease"), NodePath("../Pills"), NodePath("../Crowd"), NodePath("../Multiplier"), NodePath("../GhostKid")]
+menu_buttons = [NodePath("."), NodePath("../Exit")]
 shop_button = NodePath("../../CameraShake/Camera3D/ShopButton")
 has_info = false
 
@@ -135,11 +135,11 @@ shake_time = 0.1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2923267, 0)
 fov = 90.0
 script = ExtResource("4_bh1wf")
+hover_scale = 2.0
 chair_cam_pos = NodePath("../../ChairCamPos")
 shop_cam_pos = NodePath("../../ShopCamPos")
 shop_button = NodePath("ShopButton")
 player_ui = NodePath("../../PlayerUI")
-hover_scale = 2.0
 
 [node name="ShopButton" parent="CameraShake/Camera3D" unique_id=1097290522 node_paths=PackedStringArray("camera_controller", "shop_button") instance=ExtResource("5_ntlj6")]
 transform = Transform3D(0.32671154, -0.0057027712, 0, 0.005702771, 0.32671157, 0, 0, 0, 0.32676068, 1.1166632, 0, -0.9799359)

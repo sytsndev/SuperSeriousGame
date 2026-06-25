@@ -11,8 +11,10 @@ var base_friction: float = 540.0
 var base_money_amount: float = 0.25
 var money_tracker: float = 0.0
 var gross_money: float = 0.0
-var spin_mutliplier: float = 1.0
 
+## Multiplier
+var spin_mutliplier: float = 1.0
+var curr_multiplier: float = 0.0
 
 #amount of people in the crowd (money multiplier)
 var crowd: int = 1 ## Crowd max should be 10
@@ -25,14 +27,14 @@ var barf_mult: float = 10
 
 #UPGRADES
 var up_chair_grease_count: int = 0 
-var up_delayed_gratification: int = 0
+var up_delayed_gratification: int = 1
 var up_multiplier: int = 0
 var up_ghost_kid: int = 1
 
 #UPGRADE MULTS
 var mult_chair_grease: float = 0.1
-var mult_delayed_gratification: float = 1.3 #I want this to make barf meter max 2x higher but then 2.3 times more profit
-var mult_multiplier: float = 2.5
+var mult_delayed_gratification: float = 2.5 #I want this to make barf meter max 2x higher but then 2.3 times more profit
+var mult_multiplier: float = 0.1
 var mult_barf_increase_delayed_gratification: float = 36000
 
 #UPGRADE STATS
@@ -53,7 +55,7 @@ func add_chair_grease():
 	chair_grease_added.emit()
 
 func add_money():
-	var money_to_add = snapped(Global.get_money_for_spin(), 0.01) 
+	var money_to_add = calc_spin_total()
 	Global.gross_money += money_to_add
 	Global.money_tracker += money_to_add
 	money_added.emit(money_to_add)
@@ -62,7 +64,12 @@ func add_money():
 func add_crowd():
 	crowd += 1
 	crowd_added.emit()
-	
+
+
+func add_mutliplier():
+	up_multiplier += 1
+
+
 func roll_ghost_kid_save() -> bool:
 	return randf() < get_ghost_kid_save_chance()
 
@@ -113,6 +120,9 @@ func apply_crowd():
 
 func add_to_barf_tracker(spins: float):
 	barf_tracker += spins
+	if barf_tracker > barf_max:
+		curr_multiplier = get_barf_mult()
+		print(curr_multiplier)
 
 
 func apply_chair_grease():
@@ -120,12 +130,25 @@ func apply_chair_grease():
 
 
 func add_multiplier():
-	if up_multiplier > 0:
-		pass
+	if curr_multiplier == 0:
+		curr_multiplier = spin_mutliplier
+	curr_multiplier += get_mult_per_spin()
+	print(curr_multiplier)
 
 
 func get_mult_per_spin():
-	var mult: float
+	var mult: float = 0.0
 	if up_multiplier > 0:
-		pass
-		
+		mult += up_multiplier * mult_multiplier
+	return mult
+
+
+func get_barf_mult():
+	if barf_tracker >= barf_max:
+		if up_delayed_gratification > 0:
+			return barf_mult * (up_delayed_gratification * mult_delayed_gratification)
+		else:
+			return barf_mult
+
+func calc_spin_total():
+	return base_money_amount * apply_crowd() * curr_multiplier

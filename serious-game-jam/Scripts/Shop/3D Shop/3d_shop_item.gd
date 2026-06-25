@@ -44,7 +44,6 @@ var hover_disabled: bool = false
 func _ready() -> void:
 	if item_type == ItemType.SHOP:
 		hover_disabled = true
-		 
 	Global.put_down_info_item.connect(put_down_info_item)
 	init_pos = self.position
 	name_label = %DisplayName
@@ -74,6 +73,9 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	set_item_name()
+	if item_type == ItemType.PLAY or item_type == ItemType.EXIT:
+		name_label.visible = true 
 	if Global.disable_all_shop_items:
 		selected_info = true
 		name_label.visible = false
@@ -86,6 +88,13 @@ func _process(delta: float) -> void:
 			disable()
 	else:
 		enable()
+
+
+func set_item_name():
+	if item_type == ItemType.PLAY or item_type == ItemType.EXIT:
+		name_label.text = item_name
+	else:
+		name_label.text = "%s\n$%s" % [item_name, price]
 
 
 func on_click():
@@ -102,6 +111,10 @@ func on_click():
 		ItemType.CROWD:
 			Global.add_crowd()
 			Global.money_tracker -= price
+		ItemType.MULTIPLIER:
+			Global.add_mutliplier()
+			Global.money_tracker -= price
+			get_price()
 		ItemType.GHOST_KID:
 			Global.up_ghost_kid += 1
 		ItemType.PLAY:
@@ -201,3 +214,12 @@ func play_game():
 	shop_button.visible = true
 	start_game = true
 	Global.can_spin = true
+
+
+func get_price():
+		if Global.up_multiplier == 0:
+			price = 5.0
+		elif Global.up_multiplier == 1:
+			price = 100.0
+		else:
+			price += 50

@@ -28,6 +28,7 @@ func _ready() -> void:
 	qte_controller.ghost_save.connect(on_ghost_save) 
 	animation_player = child.find_child("AnimationPlayer")
 
+
 func spin_chair(force_override: float = -1.0):
 	var force = force_override if force_override > 0.0 else Global.get_spin_force()
 	angular_velocity = force
@@ -38,6 +39,7 @@ func spin_chair(force_override: float = -1.0):
 	var animation = animation_player.get_animation("spin")
 	animation.loop_mode = Animation.LOOP_LINEAR
 	animation_player.play("spin")
+
 
 func _physics_process(delta: float) -> void:
 	rotate_childe()
@@ -96,21 +98,26 @@ func end_spin_actions(barf: float):
 	Global.add_money()
 	spins_complete.emit()
 
+
 func on_ghost_save(success_count: int) -> void:
-	print("GHOST SAVE")
 	angular_velocity = qte_impulse
 	camera_shake.trigger_shake(success_count * 0.01)
 	
+	
 func qte_active(active: bool):
 	is_qte_active = active
+
 
 func handle_qte_failure():
 	qte_finished = true   
 	return qte_controller.cancel_qte()
 	
+	
 func handle_qte_success():
 	angular_velocity = qte_impulse
+	Global.add_multiplier()
 	return qte_controller.qte_success()
+
 
 func get_ghost_kid_save_chance() -> float:
 	if Global.up_ghost_kid <= 0:
@@ -120,6 +127,7 @@ func get_ghost_kid_save_chance() -> float:
 
 func roll_ghost_kid_save() -> bool:
 	return randf() * 100.0 < get_ghost_kid_save_chance() * 100.0
+
 
 func rotate_childe():
 	child.global_rotation = chair_top.global_rotation 

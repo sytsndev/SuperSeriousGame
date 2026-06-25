@@ -44,9 +44,11 @@ func _input(event):
 func swap_camera(camera_pos: String):
 	match camera_pos:
 		"chair":
+			player_ui.ui_container.visible = true
 			curr_camera = "chair"
 			move_camera(chair_cam_pos.global_position, chair_cam_pos.global_rotation)
 		"shop":
+			player_ui.ui_container.visible = false
 			curr_camera = "shop"
 			move_camera(shop_cam_pos.global_position, shop_cam_pos.global_rotation)
 
