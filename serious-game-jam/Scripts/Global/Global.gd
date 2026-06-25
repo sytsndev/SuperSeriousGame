@@ -28,7 +28,7 @@ var barf_mult: float = 10
 #UPGRADES
 var up_chair_grease_count: int = 0 
 var up_delayed_gratification: int = 1
-var up_multiplier: int = 1
+var up_multiplier: int = 5
 var up_ghost_kid: int = 1
 
 #UPGRADE MULTS
@@ -54,11 +54,17 @@ func add_chair_grease():
 	up_chair_grease_count += 1
 	chair_grease_added.emit()
 
+
 func add_money():
 	var money_to_add = calc_spin_total()
-	Global.gross_money += money_to_add
-	Global.money_tracker += money_to_add
-	money_added.emit(money_to_add)
+	var rounded_value = round(money_to_add * 10.0) / 100.0
+	Global.gross_money += rounded_value
+	Global.money_tracker += rounded_value
+	money_added.emit(rounded_value)
+
+
+func clear_mult():
+	curr_multiplier = spin_mutliplier
 
 
 func add_crowd():
@@ -73,15 +79,18 @@ func add_mutliplier():
 func roll_ghost_kid_save() -> bool:
 	return randf() < get_ghost_kid_save_chance()
 
+
 func get_ghost_kid_save_chance() -> float:
 	if up_ghost_kid <= 0:
 		return 0.0
 	# each kid independently rolls 15%; saved if ANY of them hit
 	return 1.0 - pow(1.0 - ghost_kid_save_chance, up_ghost_kid)
 	
+	
 func get_spin_force() -> float:
 	var force = base_spin_force
 	return force
+	
 	
 func get_friction() -> float:
 	var friction = base_friction
@@ -139,6 +148,14 @@ func add_multiplier():
 func get_mult_per_spin():
 	var mult: float = 0.0
 	if up_multiplier > 0:
+		if curr_multiplier > spin_mutliplier + (up_multiplier * mult_multiplier):
+			var ran_num = randi_range(0, 3)
+			print(ran_num)
+			if ran_num == 0:
+				mult += up_multiplier * mult_multiplier
+				return mult
+			else:
+				return mult
 		mult += up_multiplier * mult_multiplier
 	return mult
 

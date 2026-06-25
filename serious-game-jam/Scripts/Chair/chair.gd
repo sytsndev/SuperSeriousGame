@@ -42,6 +42,8 @@ func spin_chair(force_override: float = -1.0):
 
 
 func _physics_process(delta: float) -> void:
+	if qte_finished and !is_spinning:
+		qte_finished = false
 	rotate_childe()
 	if Global.can_spin and !qte_finished and Input.is_action_just_pressed("spin"):
 		if not is_spinning:
@@ -96,6 +98,7 @@ func spin(delta: float):
 func end_spin_actions(barf: float):
 	Global.add_to_barf_tracker(barf)
 	Global.add_money()
+	Global.clear_mult()
 	spins_complete.emit()
 
 

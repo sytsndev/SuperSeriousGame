@@ -35,7 +35,7 @@ func _process(delta: float) -> void:
 	else:
 		visible = false
 	spin_chair_button.disabled = is_spinning
-	money_label.text = str(Global.money_tracker)
+	money_label.text = "$" + str(Global.money_tracker)
 	barf_meter.value = Global.barf_tracker
 	barf_meter.max_value = Global.barf_max
 	multiplier_label.text = str(Global.curr_multiplier)
