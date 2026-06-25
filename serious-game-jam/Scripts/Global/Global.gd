@@ -49,6 +49,7 @@ signal money_added
 signal crowd_added
 signal chair_grease_added
 signal mult_increase
+signal reset_multiplier
 
 
 func add_chair_grease():
@@ -66,6 +67,7 @@ func add_money():
 
 func clear_mult():
 	curr_multiplier = spin_mutliplier
+	reset_multiplier.emit()
 
 
 func add_crowd():
@@ -167,6 +169,7 @@ func get_barf_mult():
 			return barf_mult * (up_delayed_gratification * mult_delayed_gratification)
 		else:
 			return barf_mult
+
 
 func calc_spin_total():
 	return base_money_amount * apply_crowd() * curr_multiplier

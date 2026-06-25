@@ -20,6 +20,8 @@ extends Control
 @export var qte_controller: QTEController
 
 var is_spinning: bool = false
+var mult_flip := false
+
 
 func _ready() -> void:
 	var root = get_tree().root
@@ -28,6 +30,7 @@ func _ready() -> void:
 	setup_barf_meter()
 	Global.money_added.connect(show_money_added_label)
 	Global.mult_increase.connect(mult_juice)
+	Global.reset_multiplier.connect(reset_mult_juice)
 
 
 func _process(delta: float) -> void:
@@ -104,8 +107,6 @@ func hide_info_label():
 	info_container.visible = false
 
 
-var mult_flip := false
-
 func mult_juice():
 	mult_flip = !mult_flip
 	var target_angle = deg_to_rad(12.0 if mult_flip else -12.0)
@@ -116,4 +117,18 @@ func mult_juice():
 
 	var current_size = multiplier_label.get_theme_font_size("normal_font_size")
 	multiplier_label.add_theme_font_size_override("normal_font_size", current_size + 8)
+
+	var current_outline = multiplier_label.get_theme_constant("outline_size")
+	multiplier_label.add_theme_constant_override("outline_size", current_outline + 2)
+
+
+func reset_mult_juice():
+	mult_flip = !mult_flip
+	var target_angle = deg_to_rad(12.0 if mult_flip else -12.0)
+
+	var t = create_tween()
+	t.tween_property(multiplier_label, "rotation", target_angle, 0.06)
 	t.tween_property(multiplier_label, "rotation", 0.0, 0.08)
+	
+	multiplier_label.add_theme_font_size_override("normal_font_size", 32)
+	multiplier_label.add_theme_constant_override("outline_size", 8)
