@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bt504iukcmnlm"]
 
 [ext_resource type="Script" uid="uid://yppeeatdf3v4" path="res://Scripts/Shop/3D Shop/3d_shop_item.gd" id="1_y03ex"]
+[ext_resource type="FontFile" uid="uid://d2ma4yq06e0p2" path="res://Assets/Fonts/PeaberryBase.ttf" id="2_tpto6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4sn2n"]
 
@@ -17,5 +18,6 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.82568, 0)
 visible = false
 pixel_size = 0.01
+font = ExtResource("2_tpto6")
 
 [connection signal="area_shape_entered" from="Area3D" to="." method="_on_area_3d_area_shape_entered"]
