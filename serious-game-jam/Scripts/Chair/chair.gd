@@ -14,6 +14,8 @@ var qte_impulse: float = Global.base_spin_force
 var is_qte_active: bool = false
 var qte_finished: bool = false
 
+var shake_mult: float = 1.0
+
 signal spins_complete
 
 #Physics
@@ -27,6 +29,7 @@ func _ready() -> void:
 	qte_controller.active.connect(qte_active)
 	qte_controller.ghost_save.connect(on_ghost_save) 
 	animation_player = child.find_child("AnimationPlayer")
+	Global.mult_increase.connect(multiplier_increase)
 
 
 func spin_chair(force_override: float = -1.0):
@@ -49,7 +52,8 @@ func _physics_process(delta: float) -> void:
 		if not is_spinning:
 			spin_chair()
 		elif is_qte_active:
-			camera_shake.trigger_shake(handle_qte_success() * 0.01)
+			camera_shake.trigger_shake(shake_mult * 0.01)
+			handle_qte_success()
 		else:
 			var ghost_chance = Global.roll_ghost_kid_save()
 			print(ghost_chance)
@@ -134,3 +138,8 @@ func roll_ghost_kid_save() -> bool:
 
 func rotate_childe():
 	child.global_rotation = chair_top.global_rotation 
+
+
+func multiplier_increase():
+	shake_mult += 1
+	

@@ -11,7 +11,8 @@ func _ready():
 	base_pos = position
 
 func trigger_shake(strength_mult: float):
-	shake_strength = strength_mult
+	if shake_strength <= 0.10:
+		shake_strength = strength_mult 
 	shake_timer = shake_time
 
 func _process(delta):

@@ -28,7 +28,7 @@ var barf_mult: float = 10
 #UPGRADES
 var up_chair_grease_count: int = 0 
 var up_delayed_gratification: int = 1
-var up_multiplier: int = 5
+var up_multiplier: int = 10
 var up_ghost_kid: int = 1
 
 #UPGRADE MULTS
