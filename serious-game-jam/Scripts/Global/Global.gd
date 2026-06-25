@@ -26,13 +26,13 @@ var barf_mult: float = 10
 
 
 #UPGRADES
-var up_chair_grease_count: int = 0 
+var up_chair_grease_count: int = 5
 var up_delayed_gratification: int = 1
-var up_multiplier: int = 10
+var up_multiplier: int = 1
 var up_ghost_kid: int = 1
 
 #UPGRADE MULTS
-var mult_chair_grease: float = 0.1
+var mult_chair_grease: float = 0.01
 var mult_delayed_gratification: float = 2.5 #I want this to make barf meter max 2x higher but then 2.3 times more profit
 var mult_multiplier: float = 0.1
 var mult_barf_increase_delayed_gratification: float = 36000

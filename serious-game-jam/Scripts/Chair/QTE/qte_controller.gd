@@ -17,9 +17,8 @@ signal ghost_save
 signal show_info
 
 func _ready() -> void:
-	qte_length = qte_length_upgrade_applied()
-	qte_default_length = qte_length_upgrade_applied()
-	Global.chair_grease_added.connect(set_default_qte_length)
+	qte_length_change_upgrade_applied()
+	Global.chair_grease_added.connect(qte_length_change_upgrade_applied)
 
 func init_qte():
 	qte_cancelled = false
@@ -45,6 +44,7 @@ func _physics_process(delta: float) -> void:
 func qte_success():
 	qte_success_count += 1
 	qte_length *= qte_length_change
+	print(qte_length)
 	qte_restart = true
 	active.emit(false)
 	init_qte()
@@ -64,12 +64,9 @@ func cancel_qte():
 	active.emit(false)
 
 
-func qte_length_upgrade_applied():
+func qte_length_change_upgrade_applied():
 	if Global.up_chair_grease_count > 0:
-		return qte_length + Global.apply_chair_grease()
+		print(Global.apply_chair_grease())
+		qte_length_change += Global.apply_chair_grease()
 	else:
-		return qte_length
-
-
-func set_default_qte_length():
-	qte_default_length = qte_length_upgrade_applied()
+		qte_length_change = qte_default_length

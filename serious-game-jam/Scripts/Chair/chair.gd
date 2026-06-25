@@ -103,6 +103,7 @@ func end_spin_actions(barf: float):
 	Global.add_to_barf_tracker(barf)
 	Global.add_money()
 	Global.clear_mult()
+	shake_mult = 1
 	spins_complete.emit()
 
 
