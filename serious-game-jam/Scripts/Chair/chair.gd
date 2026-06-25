@@ -3,6 +3,7 @@ extends Node3D
 
 @export var qte_controller: QTEController
 @export var camera_shake: CameraShake
+@export var chair_spin_sound: AudioStreamPlayer3D
 
 @export var path: String
 @export var child: Node3D
@@ -22,7 +23,7 @@ signal spins_complete
 var angular_velocity: float = 0.0 #current velocity in degrees/s
 var is_spinning: bool = false
 var accumulated_spins: float = 0.0 #total number of full 360 degree spins
-
+var spin_pitch: float = 1.0
 
 func _ready() -> void:
 	chair_top = get_node(path)
@@ -30,6 +31,7 @@ func _ready() -> void:
 	qte_controller.ghost_save.connect(on_ghost_save) 
 	animation_player = child.find_child("AnimationPlayer")
 	Global.mult_increase.connect(multiplier_increase)
+	spin_pitch = 1.0
 
 
 func spin_chair(force_override: float = -1.0):
@@ -52,7 +54,7 @@ func _physics_process(delta: float) -> void:
 		if not is_spinning:
 			spin_chair()
 		elif is_qte_active:
-			camera_shake.trigger_shake(shake_mult * 0.01)
+			chair_spin_sound.play()
 			handle_qte_success()
 		else:
 			var ghost_chance = Global.roll_ghost_kid_save()
@@ -89,6 +91,7 @@ func spin(delta: float):
 	#average start and end speed -> exact for constant deceleration
 	var step = (angular_velocity + next_velocity) * 0.5 * delta
 	chair_top.rotate_y(deg_to_rad(step))
+	Global.add_to_barf_tracker(step)
 	accumulated_spins += step
 	angular_velocity = next_velocity
 		
@@ -100,10 +103,11 @@ func spin(delta: float):
 
 
 func end_spin_actions(barf: float):
-	Global.add_to_barf_tracker(barf)
+	#Global.add_to_barf_tracker(barf)
 	Global.add_money()
 	Global.clear_mult()
 	shake_mult = 1
+	spin_pitch = 1.0
 	spins_complete.emit()
 
 
@@ -111,7 +115,7 @@ func on_ghost_save(success_count: int) -> void:
 	angular_velocity = qte_impulse
 	camera_shake.trigger_shake(success_count * 0.01)
 	
-	
+	  
 func qte_active(active: bool):
 	is_qte_active = active
 
@@ -142,5 +146,6 @@ func rotate_childe():
 
 
 func multiplier_increase():
-	shake_mult += 1
-	
+	shake_mult += 0.01
+	spin_pitch += 0.1
+	chair_spin_sound.pitch_scale = spin_pitch

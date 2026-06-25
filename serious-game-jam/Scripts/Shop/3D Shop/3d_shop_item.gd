@@ -27,6 +27,7 @@ OTHER }
 @export var show_hover_tip: bool
 @export var has_info: bool = true
 @export var info_pos: Vector3 = Vector3(0.037, 0.348, 0.14)
+@export var hover_sound: AudioStreamPlayer3D
 
 var blocked_mesh_path = "res://Assets/WIP/Upgrades/Blocked.glb"
 var mesh: MeshInstance3D
@@ -41,7 +42,9 @@ var init_pos: Vector3
 var selected_info: bool = false
 var hover_disabled: bool = false
 
+
 func _ready() -> void:
+	hover_sound.pitch_scale = 0.7
 	if item_type == ItemType.SHOP:
 		hover_disabled = true
 	Global.put_down_info_item.connect(put_down_info_item)
@@ -53,6 +56,7 @@ func _ready() -> void:
 		for item in shop_items:
 			item.item_disabled = true
 			item.visible = false
+			item.position.y -= 1
 			print(item)
 	if shop_button:
 		shop_button.item_disabled = true
@@ -79,8 +83,11 @@ func _process(delta: float) -> void:
 	if Global.disable_all_shop_items:
 		selected_info = true
 		name_label.visible = false
+		shop_button.visible = false
 	if !Global.disable_all_shop_items:
 		selected_info = false
+		if start_game:
+			shop_button.visible = true
 	if !start_game:
 		return
 	if check_disabled() and !item_blocked:
@@ -207,6 +214,7 @@ func play_game():
 	for item in shop_items:
 		item.visible = true
 		item.start_game = true
+		item.position.y += 1
 	for button in menu_buttons:
 		button.visible = false
 		button.item_disabled = true
@@ -223,3 +231,9 @@ func get_price():
 			price = 100.0
 		else:
 			price += 50
+
+
+func play_hover_sound():
+	var pitch_change = randi_range(-0.1, 0.1)
+	hover_sound.pitch_scale += pitch_change
+	hover_sound.play()

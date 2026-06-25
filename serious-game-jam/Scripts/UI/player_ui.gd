@@ -96,13 +96,12 @@ func toggle_spacebar_prompt(show: bool):
 
 
 func show_info_label(text: String):
-	ui_container.visible = false
 	info_container.visible = true
 	info_label.text = text
+	shop_hover_tip.visible = false
 
 
 func hide_info_label():
-	ui_container.visible = true
 	Global.put_down_info_item.emit()
 	info_container.visible = false
 

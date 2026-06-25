@@ -2,11 +2,13 @@
 
 [ext_resource type="Script" uid="uid://yppeeatdf3v4" path="res://Scripts/Shop/3D Shop/3d_shop_item.gd" id="1_y03ex"]
 [ext_resource type="FontFile" uid="uid://d2ma4yq06e0p2" path="res://Assets/Fonts/PeaberryBase.ttf" id="2_tpto6"]
+[ext_resource type="AudioStream" uid="uid://wpsh3o3jvt2i" path="res://Assets/Sound/ShopItemSounds/button_fx_low_001_cc0_avr.wav" id="3_8cxw5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4sn2n"]
 
-[node name="ShopItem" type="Node3D" unique_id=745183903]
+[node name="ShopItem" type="Node3D" unique_id=745183903 node_paths=PackedStringArray("hover_sound")]
 script = ExtResource("1_y03ex")
+hover_sound = NodePath("HoverSound")
 
 [node name="Area3D" type="Area3D" parent="." unique_id=418643203]
 
@@ -19,5 +21,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.82568, 0)
 visible = false
 pixel_size = 0.01
 font = ExtResource("2_tpto6")
+
+[node name="HoverSound" type="AudioStreamPlayer3D" parent="." unique_id=1511239878]
+stream = ExtResource("3_8cxw5")
+volume_db = -27.057
 
 [connection signal="area_shape_entered" from="Area3D" to="." method="_on_area_3d_area_shape_entered"]

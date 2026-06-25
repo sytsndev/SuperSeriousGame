@@ -133,8 +133,7 @@ func apply_crowd():
 func add_to_barf_tracker(spins: float):
 	barf_tracker += spins
 	if barf_tracker > barf_max:
-		curr_multiplier = get_barf_mult()
-		print(curr_multiplier)
+		curr_multiplier += get_barf_mult()
 
 
 func apply_chair_grease():
@@ -151,7 +150,7 @@ func get_mult_per_spin():
 	var mult: float = 0.0
 	if up_multiplier > 0:
 		if curr_multiplier > spin_mutliplier + (up_multiplier * mult_multiplier):
-			var ran_num = randi_range(0, 3)
+			var ran_num = randi_range(0, 2)
 			if ran_num == 0:
 				mult += up_multiplier * mult_multiplier
 				mult_increase.emit()
@@ -165,6 +164,7 @@ func get_mult_per_spin():
 
 func get_barf_mult():
 	if barf_tracker >= barf_max:
+		barf_tracker = 0.0
 		if up_delayed_gratification > 0:
 			return barf_mult * (up_delayed_gratification * mult_delayed_gratification)
 		else:

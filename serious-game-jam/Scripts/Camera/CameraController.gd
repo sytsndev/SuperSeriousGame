@@ -20,6 +20,7 @@ var sign_pos: Vector3 = Vector3(1.117, 0.0, -0.98)
 @export var hover_scale: float = 1.01
 
 var ray_length: float = 100.0
+var sound_timer: float = 0.0
 
 
 func _ready() -> void:
@@ -30,6 +31,8 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	set_shop_button_pos()
+	if sound_timer > 0.0:
+		sound_timer -= delta
 
 
 func _input(event):
@@ -99,6 +102,10 @@ func _update_ray_and_check_collision():
 			end_pos = Vector3(curr_hover_item.global_position.x, curr_hover_item.global_position.y + hover_offset, curr_hover_item.global_position.z)
 			start_pos = curr_hover_item.global_position
 			hover_item()
+			if sound_timer <= 0.0:
+				curr_hover_item.play_hover_sound()
+				sound_timer = 0.1
+			
 
 	elif not new_hover_area and last_hover_area:
 		if curr_hover_item:
