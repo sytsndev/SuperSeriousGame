@@ -57,7 +57,7 @@ func add_chair_grease():
 
 func add_money():
 	var money_to_add = calc_spin_total()
-	var rounded_value = round(money_to_add * 10.0) / 100.0
+	var rounded_value = round(money_to_add * 100.0) / 100.0
 	Global.gross_money += rounded_value
 	Global.money_tracker += rounded_value
 	money_added.emit(rounded_value)
