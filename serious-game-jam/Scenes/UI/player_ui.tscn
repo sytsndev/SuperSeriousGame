@@ -24,6 +24,7 @@ offset_bottom = 1080.0
 
 [node name="SpinChair" type="Button" parent="MainUIContainer" unique_id=1533500153]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -40,6 +41,7 @@ text = "Spin Chair"
 
 [node name="SpinAmount" type="LineEdit" parent="MainUIContainer" unique_id=619872378]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -55,19 +57,20 @@ placeholder_text = "Ex) 360.0"
 
 [node name="MoneyAdded" type="RichTextLabel" parent="MainUIContainer" unique_id=1030416075]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -46.5
-offset_top = 287.0
-offset_right = 133.0
-offset_bottom = 348.0
+offset_left = 171.5
+offset_top = -512.0
+offset_right = 351.0
+offset_bottom = -451.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/outline_size = 8
+theme_override_fonts/normal_font = ExtResource("6_deklj")
 theme_override_font_sizes/normal_font_size = 32
 theme_override_font_sizes/bold_font_size = 32
 theme_override_font_sizes/bold_italics_font_size = 32
@@ -79,14 +82,15 @@ vertical_alignment = 1
 
 [node name="Multiplier" type="RichTextLabel" parent="MainUIContainer" unique_id=262112873]
 unique_name_in_owner = true
+z_index = 10
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 670.0
-offset_top = -69.0
-offset_right = -411.0
-offset_bottom = -731.0
+offset_left = 543.0
+offset_top = -44.0
+offset_right = -538.0
+offset_bottom = -706.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(420, 209)
@@ -203,6 +207,9 @@ offset_right = 350.0
 offset_bottom = 88.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/normal_font = ExtResource("6_deklj")
+theme_override_font_sizes/normal_font_size = 32
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -219,6 +226,9 @@ offset_right = 1015.0
 offset_bottom = 929.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("6_deklj")
+theme_override_font_sizes/font_size = 32
 text = "Close"
 
 [node name="MoneyLabel" type="RichTextLabel" parent="." unique_id=47755402]

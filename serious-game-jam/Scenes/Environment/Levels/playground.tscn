@@ -4,6 +4,8 @@
 [ext_resource type="Script" uid="uid://dlllli3jcrovy" path="res://Scripts/Evnironment/Levels/playground.gd" id="1_pkhe6"]
 [ext_resource type="PackedScene" uid="uid://bnddnmpjd3w52" path="res://Scenes/Environment/NPC/crowd_memeber.tscn" id="2_5oq3e"]
 [ext_resource type="PackedScene" uid="uid://bror5epie35fx" path="res://Scenes/Chair/chair_container.tscn" id="2_08fgb"]
+[ext_resource type="AudioStream" uid="uid://bfdwcqgcd6owl" path="res://Assets/Sound/music/Quincas Moreira - Robot City.mp3" id="5_k8dm1"]
+[ext_resource type="FontFile" uid="uid://d2ma4yq06e0p2" path="res://Assets/Fonts/PeaberryBase.ttf" id="6_raf5n"]
 
 [node name="Playground" type="Node3D" unique_id=1550650181 node_paths=PackedStringArray("crowd_spawn_node")]
 script = ExtResource("1_pkhe6")
@@ -56,3 +58,25 @@ transform = Transform3D(0.9965525, 0, -0.082964465, 0, 1, 0, 0.082964465, 0, 0.9
 
 [node name="Marker3D13" type="Marker3D" parent="CrowdSpawn" unique_id=1885099792]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9126964, 0.7232168, -9.9512205)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=2113980009]
+stream = ExtResource("5_k8dm1")
+volume_db = -30.0
+autoplay = true
+
+[node name="Volume" type="HSlider" parent="." unique_id=1131868570]
+offset_left = 1377.0
+offset_top = 27.0
+offset_right = 1894.0
+offset_bottom = 43.0
+
+[node name="VolumeLabel" type="RichTextLabel" parent="Volume" unique_id=1071526628]
+layout_mode = 0
+offset_left = -75.0
+offset_top = -1.0
+offset_right = -3.0
+offset_bottom = 23.0
+theme_override_constants/outline_size = 4
+theme_override_fonts/normal_font = ExtResource("6_raf5n")
+theme_override_font_sizes/normal_font_size = 16
+text = "Volume: "
