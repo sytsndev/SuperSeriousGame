@@ -203,6 +203,8 @@ func enable():
 
 
 func block_item():
+	if item_blocked:
+		return
 	item_blocked = true
 	var loaded_path = load(blocked_mesh_path)
 	var instance = loaded_path.instantiate()
