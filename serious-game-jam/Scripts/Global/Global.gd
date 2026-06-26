@@ -4,21 +4,34 @@ extends Node
 var init_spin_rate: float = 1.2
 var init_spin_amount: float = 360.0
 
+
 var base_spin_force: float = 1080.0
 var base_friction: float = 540.0
+
+
+## AUDIO
+var audio_adjust: float = 0.0
+var mult_default: float = -0.6
+var music_default: float = -30.0
+var chair_default: float = -27.5
+
 
 #MONEY
 var base_money_amount: float = 0.25
 var money_tracker: float = 0.0
 var gross_money: float = 0.0
 
+
 ## Multiplier
 var spin_mutliplier: float = 1.0
 var curr_multiplier: float = 0.0
 
+
 #amount of people in the crowd (money multiplier)
 var crowd: int = 1 ## Crowd max should be 10
 var crowd_max: int = 10
+
+
 #BARF
 var barf_tracker: float = 0.0
 var barf_max: float = 36000
@@ -50,6 +63,24 @@ signal crowd_added
 signal chair_grease_added
 signal mult_increase
 signal reset_multiplier
+
+
+func get_chair_audio():
+	if audio_adjust < -14.0:
+		return -100.0
+	return chair_default + audio_adjust
+
+
+func get_music_audio():
+	if audio_adjust < -14.0:
+		return -100.0
+	return music_default + audio_adjust
+
+
+func get_mult_audio():
+	if audio_adjust < -14.0:
+		return -100.0
+	return music_default + audio_adjust
 
 
 func add_chair_grease():

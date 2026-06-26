@@ -58,11 +58,9 @@ func _ready() -> void:
 			item.item_disabled = true
 			item.visible = false
 			item.position.y -= 1
-			print(item)
 	if shop_button:
 		shop_button.item_disabled = true
 		shop_button.visible = false
-		print(shop_button)
 	var loaded_path = load(mesh_path)
 	var instance = loaded_path.instantiate()
 	instance.rotation = init_rot
@@ -71,13 +69,13 @@ func _ready() -> void:
 	for child in instance.get_children():
 		if child is MeshInstance3D:
 			mesh_child = child
-
 	if mesh_child:
 		mesh = mesh_child
 		orig_mat = mesh_child.get_active_material(0) as StandardMaterial3D
 
 
 func _process(delta: float) -> void:
+	
 	set_item_name()
 	if item_type == ItemType.PLAY or item_type == ItemType.EXIT:
 		name_label.visible = true 
