@@ -11,6 +11,7 @@ var base_friction: float = 540.0
 
 ## AUDIO
 var audio_adjust: float = 0.0
+var music_adjust: float = 0.0
 var mult_default: float = -0.6
 var music_default: float = -30.0
 var chair_default: float = -27.5
@@ -72,9 +73,9 @@ func get_chair_audio():
 
 
 func get_music_audio():
-	if audio_adjust < -14.0:
+	if music_adjust < -14.0:
 		return -100.0
-	return music_default + audio_adjust
+	return music_default + music_adjust
 
 
 func get_mult_audio():

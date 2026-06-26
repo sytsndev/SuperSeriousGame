@@ -7,12 +7,13 @@
 [ext_resource type="AudioStream" uid="uid://bfdwcqgcd6owl" path="res://Assets/Sound/music/Quincas Moreira - Robot City.mp3" id="5_k8dm1"]
 [ext_resource type="FontFile" uid="uid://d2ma4yq06e0p2" path="res://Assets/Fonts/PeaberryBase.ttf" id="6_raf5n"]
 
-[node name="Playground" type="Node3D" unique_id=1550650181 node_paths=PackedStringArray("crowd_spawn_node", "volume_slider", "music")]
+[node name="Playground" type="Node3D" unique_id=1550650181 node_paths=PackedStringArray("crowd_spawn_node", "volume_slider", "game_slider", "music")]
 script = ExtResource("1_pkhe6")
 crowd_spawn_node = NodePath("CrowdSpawn")
 child_models = Array[String](["res://Assets/WIP/Children/KidModelBlue.glb", "res://Assets/WIP/Children/KidModelGreen.glb", "res://Assets/WIP/Children/KidModelOrange.glb", "res://Assets/WIP/Children/KidModelPurple.glb", "res://Assets/WIP/Children/KidModelRed.glb"])
 crowd_member = ExtResource("2_5oq3e")
-volume_slider = NodePath("Volume")
+volume_slider = NodePath("Game")
+game_slider = NodePath("Music")
 music = NodePath("AudioStreamPlayer3D")
 
 [node name="World" parent="." unique_id=605021482 instance=ExtResource("1_bhjri")]
@@ -67,7 +68,7 @@ stream = ExtResource("5_k8dm1")
 volume_db = -30.0
 autoplay = true
 
-[node name="Volume" type="HSlider" parent="." unique_id=1131868570]
+[node name="Music" type="HSlider" parent="." unique_id=1131868570]
 offset_left = 1377.0
 offset_top = 27.0
 offset_right = 1894.0
@@ -75,7 +76,7 @@ offset_bottom = 43.0
 min_value = -15.0
 max_value = 15.0
 
-[node name="VolumeLabel" type="RichTextLabel" parent="Volume" unique_id=1071526628]
+[node name="VolumeLabel" type="RichTextLabel" parent="Music" unique_id=1071526628]
 layout_mode = 0
 offset_left = -75.0
 offset_top = -1.0
@@ -86,4 +87,24 @@ theme_override_fonts/normal_font = ExtResource("6_raf5n")
 theme_override_font_sizes/normal_font_size = 16
 text = "Volume: "
 
-[connection signal="value_changed" from="Volume" to="." method="_on_volume_value_changed"]
+[node name="Game" type="HSlider" parent="." unique_id=625231097]
+offset_left = 1377.0
+offset_top = 62.0
+offset_right = 1894.0
+offset_bottom = 78.0
+min_value = -15.0
+max_value = 15.0
+
+[node name="VolumeLabel" type="RichTextLabel" parent="Game" unique_id=1335840246]
+layout_mode = 0
+offset_left = -55.0
+offset_top = -1.0
+offset_right = 17.0
+offset_bottom = 23.0
+theme_override_constants/outline_size = 4
+theme_override_fonts/normal_font = ExtResource("6_raf5n")
+theme_override_font_sizes/normal_font_size = 16
+text = "Game:"
+
+[connection signal="value_changed" from="Music" to="." method="_on_music_value_changed"]
+[connection signal="value_changed" from="Game" to="." method="_on_volume_value_changed"]

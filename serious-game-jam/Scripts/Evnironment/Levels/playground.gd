@@ -5,6 +5,7 @@ extends Node3D
 @export var child_models: Array[String]
 @export var crowd_member: PackedScene
 @export var volume_slider: HSlider
+@export var game_slider: HSlider
 @export var music: AudioStreamPlayer3D
 
 
@@ -42,7 +43,11 @@ func spawn_child(index: int = -1):
 				spawn.add_child(instance)
 
 
-func _on_volume_value_changed(value: float) -> void:
-	Global.audio_adjust = volume_slider.value
+func _on_music_value_changed(value: float) -> void:
+	Global.music_adjust = value
 	music.volume_db = Global.get_music_audio() 
 	
+
+
+func _on_volume_value_changed(value: float) -> void:
+	Global.audio_adjust = value
