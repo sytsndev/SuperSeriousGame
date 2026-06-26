@@ -2,14 +2,20 @@
 
 [ext_resource type="Script" uid="uid://qen6qduuhlii" path="res://Scripts/Chair/chair.gd" id="1_bjvig"]
 [ext_resource type="PackedScene" uid="uid://w4rssu76w6s6" path="res://Assets/Inherited Scenes/chair_3_0.tscn" id="2_bjvig"]
-[ext_resource type="PackedScene" uid="uid://cy1fe00gr01hj" path="res://Assets/WIP/Children/KidModelBlue.glb" id="3_js5mj"]
+[ext_resource type="AudioStream" uid="uid://dpfpdixvhcjbq" path="res://Assets/Sound/Chair/ChairSpin.wav" id="4_hushj"]
+[ext_resource type="PackedScene" uid="uid://77su8cq4ajy6" path="res://Assets/Inherited Scenes/kid_model_can_sit.tscn" id="4_u24av"]
 
-[node name="Chair" type="Node3D" unique_id=142225171 node_paths=PackedStringArray("child")]
+[node name="Chair" type="Node3D" unique_id=142225171 node_paths=PackedStringArray("chair_spin_sound", "child")]
 script = ExtResource("1_bjvig")
+chair_spin_sound = NodePath("ChairNoise")
 path = "Chair/ChairTop"
-child = NodePath("Chair/KidModelBlue")
+child = NodePath("Chair/KidModelCanSit")
 
 [node name="Chair" parent="." unique_id=707312065 instance=ExtResource("2_bjvig")]
 
-[node name="KidModelBlue" parent="Chair" unique_id=1220881330 instance=ExtResource("3_js5mj")]
+[node name="KidModelCanSit" parent="Chair" unique_id=528032463 instance=ExtResource("4_u24av")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.07676798, -0.18494338)
+
+[node name="ChairNoise" type="AudioStreamPlayer3D" parent="." unique_id=843004115]
+stream = ExtResource("4_hushj")
+volume_db = -27.586

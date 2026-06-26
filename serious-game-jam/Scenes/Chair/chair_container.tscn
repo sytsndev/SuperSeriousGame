@@ -13,10 +13,10 @@
 
 [node name="ChairContainer" type="Node3D" unique_id=1088973269]
 
-[node name="Chair" parent="." unique_id=142225171 node_paths=PackedStringArray("qte_controller", "camera_shake", "chair_spin_sound", "ghost_kid") instance=ExtResource("2_776ly")]
+[node name="Chair" parent="." unique_id=142225171 node_paths=PackedStringArray("qte_controller", "camera_shake", "mult_sound", "ghost_kid") instance=ExtResource("2_776ly")]
 qte_controller = NodePath("../QTEController")
 camera_shake = NodePath("../CameraShake")
-chair_spin_sound = NodePath("../ChairSpinSound")
+mult_sound = NodePath("../MultSound")
 ghost_kid = NodePath("../GhostKid")
 
 [node name="PlayerUI" parent="." unique_id=1040131706 node_paths=PackedStringArray("chair", "money_controller", "camera_controller", "qte_controller") instance=ExtResource("3_6aruv")]
@@ -167,7 +167,7 @@ init_rot = Vector3(0, 45, 0)
 shop_button = NodePath(".")
 has_info = false
 
-[node name="ChairSpinSound" type="AudioStreamPlayer3D" parent="." unique_id=530582562]
+[node name="MultSound" type="AudioStreamPlayer3D" parent="." unique_id=530582562]
 stream = ExtResource("9_u1ouj")
 volume_db = -6.118
 

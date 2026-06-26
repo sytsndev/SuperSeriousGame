@@ -3,6 +3,7 @@ extends Node3D
 
 @export var qte_controller: QTEController
 @export var camera_shake: CameraShake
+@export var mult_sound: AudioStreamPlayer3D
 @export var chair_spin_sound: AudioStreamPlayer3D
 @export var ghost_kid: GhostKid
 
@@ -37,6 +38,9 @@ func _ready() -> void:
 	Global.mult_increase.connect(multiplier_increase)
 	spin_pitch = 1.0
 	ghost_kid.ghost_anim_fin.connect(ghost_kid_anim_fin)
+	var animation = animation_player.get_animation("sit")
+	animation.loop_mode = Animation.LOOP_LINEAR
+	animation_player.play("sit")
 
 
 func spin_chair(force_override: float = -1.0):
@@ -60,7 +64,7 @@ func _physics_process(delta: float) -> void:
 			spin_chair()
 		elif is_qte_active:
 			camera_shake.trigger_shake(shake_mult * 0.01)
-			chair_spin_sound.play()
+			mult_sound.play()
 			handle_qte_success()
 		else:
 			var ghost_chance = Global.roll_ghost_kid_save()
@@ -93,28 +97,31 @@ func _physics_process(delta: float) -> void:
 func spin(delta: float):
 	if not is_spinning:
 		return
-	
-	#speed at end of frame, after friction
+
 	var next_velocity = angular_velocity - Global.get_friction() * delta
-		
-	#average start and end speed -> exact for constant deceleration
 	var step = (angular_velocity + next_velocity) * 0.5 * delta
+
 	chair_top.rotate_y(deg_to_rad(step))
 	Global.add_to_barf_tracker(step)
 	accumulated_spins += step
+
+	var speed_ratio = clamp(angular_velocity / 360.0, 0.0, 1.0)
+	chair_spin_sound.volume_db = lerp(-35.0, -20.0, speed_ratio)
+
+	if not chair_spin_sound.playing:
+		chair_spin_sound.play()
+
 	angular_velocity = next_velocity
-		
+
 	if angular_velocity <= 0.0:
 		angular_velocity = 0.0
 		is_spinning = false
 		if !ghost_save:
-			print("Ghost save, ", ghost_save)
 			end_spin_actions(accumulated_spins)
 		animation_player.stop()
 
 
 func end_spin_actions(barf: float):
-	print("spinend")
 	#Global.add_to_barf_tracker(barf)
 	Global.add_money()
 	Global.clear_mult()
@@ -123,6 +130,7 @@ func end_spin_actions(barf: float):
 	spins_complete.emit()
 	ghost_save = false
 	allow_ghost_input = false
+	animation_player.play("sit")
 
 
 func on_ghost_save(success_count: int) -> void:
@@ -169,7 +177,7 @@ func rotate_childe():
 func multiplier_increase():
 	shake_mult += 0.01
 	spin_pitch += 0.1
-	chair_spin_sound.pitch_scale = spin_pitch
+	mult_sound.pitch_scale = spin_pitch
 
 
 func ghost_kid_anim_fin():

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://gqn2aijt47lm"
+path="res://.godot/imported/New Recording 17.mp3-de856eebfcb027026d52f85631a5296d.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sound/Chair/New Recording 17.mp3"
+dest_files=["res://.godot/imported/New Recording 17.mp3-de856eebfcb027026d52f85631a5296d.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
