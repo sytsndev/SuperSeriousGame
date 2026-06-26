@@ -44,7 +44,6 @@ func _physics_process(delta: float) -> void:
 func qte_success():
 	qte_success_count += 1
 	qte_length *= qte_length_change
-	print(qte_length)
 	qte_restart = true
 	active.emit(false)
 	init_qte()
@@ -53,10 +52,6 @@ func qte_success():
 
 func cancel_qte():
 	qte_cancelled = true
-	
-	if Global.roll_ghost_kid_save():
-		ghost_save.emit(qte_success())
-		return
 	qte_active = false
 	qte_timer = 0.0
 	qte_success_count = 0
@@ -66,7 +61,6 @@ func cancel_qte():
 
 func qte_length_change_upgrade_applied():
 	if Global.up_chair_grease_count > 0:
-		print(Global.apply_chair_grease())
 		qte_length_change += Global.apply_chair_grease()
 	else:
 		qte_length_change = qte_default_length

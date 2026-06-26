@@ -4,6 +4,7 @@ extends Node3D
 @export var qte_controller: QTEController
 @export var camera_shake: CameraShake
 @export var chair_spin_sound: AudioStreamPlayer3D
+@export var ghost_kid: GhostKid
 
 @export var path: String
 @export var child: Node3D
@@ -16,8 +17,11 @@ var is_qte_active: bool = false
 var qte_finished: bool = false
 
 var shake_mult: float = 1.0
+var ghost_save: bool = false
+var allow_ghost_input: bool = false
 
 signal spins_complete
+signal sig_ghost_save
 
 #Physics
 var angular_velocity: float = 0.0 #current velocity in degrees/s
@@ -32,6 +36,7 @@ func _ready() -> void:
 	animation_player = child.find_child("AnimationPlayer")
 	Global.mult_increase.connect(multiplier_increase)
 	spin_pitch = 1.0
+	ghost_kid.ghost_anim_fin.connect(ghost_kid_anim_fin)
 
 
 func spin_chair(force_override: float = -1.0):
@@ -50,20 +55,24 @@ func _physics_process(delta: float) -> void:
 	if qte_finished and !is_spinning:
 		qte_finished = false
 	rotate_childe()
-	if Global.can_spin and !qte_finished and Input.is_action_just_pressed("spin"):
+	if (Global.can_spin and !qte_finished and Input.is_action_just_pressed("spin") and !ghost_save):
 		if not is_spinning:
 			spin_chair()
 		elif is_qte_active:
+			camera_shake.trigger_shake(shake_mult * 0.01)
 			chair_spin_sound.play()
 			handle_qte_success()
 		else:
 			var ghost_chance = Global.roll_ghost_kid_save()
-			print(ghost_chance)
 			if ghost_chance:
-				handle_qte_success()
+				perform_save()
 			else:
-				print("Ghost kid failed")
 				handle_qte_failure()  
+	elif  ghost_save and allow_ghost_input and Input.is_action_just_pressed("spin"):
+		if ghost_save:
+			spin_chair()
+			ghost_save = false
+			sig_ghost_save.emit(false, true)
 	spin(delta)
 	
 #func spin_duration_for_amount(spin_amount: float) -> float:
@@ -84,7 +93,7 @@ func _physics_process(delta: float) -> void:
 func spin(delta: float):
 	if not is_spinning:
 		return
-		
+	
 	#speed at end of frame, after friction
 	var next_velocity = angular_velocity - Global.get_friction() * delta
 		
@@ -98,17 +107,22 @@ func spin(delta: float):
 	if angular_velocity <= 0.0:
 		angular_velocity = 0.0
 		is_spinning = false
-		end_spin_actions(accumulated_spins)
+		if !ghost_save:
+			print("Ghost save, ", ghost_save)
+			end_spin_actions(accumulated_spins)
 		animation_player.stop()
 
 
 func end_spin_actions(barf: float):
+	print("spinend")
 	#Global.add_to_barf_tracker(barf)
 	Global.add_money()
 	Global.clear_mult()
 	shake_mult = 1
 	spin_pitch = 1.0
 	spins_complete.emit()
+	ghost_save = false
+	allow_ghost_input = false
 
 
 func on_ghost_save(success_count: int) -> void:
@@ -131,6 +145,13 @@ func handle_qte_success():
 	return qte_controller.qte_success()
 
 
+func perform_save():
+	qte_controller.cancel_qte()
+	ghost_save = true
+	allow_ghost_input = false
+	ghost_kid.play_ghost_save()
+
+
 func get_ghost_kid_save_chance() -> float:
 	if Global.up_ghost_kid <= 0:
 		return 0.0
@@ -149,3 +170,8 @@ func multiplier_increase():
 	shake_mult += 0.01
 	spin_pitch += 0.1
 	chair_spin_sound.pitch_scale = spin_pitch
+
+
+func ghost_kid_anim_fin():
+	allow_ghost_input = true
+	sig_ghost_save.emit(true, true)

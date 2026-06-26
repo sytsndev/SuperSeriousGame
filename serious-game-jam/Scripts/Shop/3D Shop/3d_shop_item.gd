@@ -18,6 +18,7 @@ OTHER }
 @export var item_info: String
 @export var item_type: ItemType 
 @export var price: float = 5.0
+@export var max_up: int ## Used to limit the amount of upgrades
 @export var mesh_path: String
 @export var init_rot: Vector3 = Vector3(0, 180, 0)
 @export var price_increase: float
@@ -101,7 +102,8 @@ func set_item_name():
 	if item_type == ItemType.PLAY or item_type == ItemType.EXIT:
 		name_label.text = item_name
 	else:
-		name_label.text = "%s\n$%s" % [item_name, price]
+		var name = item_name + " (" + str(Global.get_up_count(item_name)) + ")"
+		name_label.text = "%s\n$%s" % [name, price]
 
 
 func on_click():
@@ -170,7 +172,23 @@ func check_disabled():
 		return true
 	match item_type:
 		ItemType.CROWD:
-			if Global.crowd >= Global.crowd_max:
+			if Global.crowd >= max_up:
+				block_item()
+				return true
+		ItemType.CHAIR_GREASE:
+			if Global.up_chair_grease_count >= max_up:
+				block_item()
+				return true
+		ItemType.DELAYED_GRATIFICATION:
+			if Global.up_delayed_gratification >= max_up:
+				block_item()
+				return true
+		ItemType.GHOST_KID:
+			if Global.up_delayed_gratification >= max_up:
+				block_item()
+				return true
+		ItemType.MULTIPLIER:
+			if Global.up_multiplier >= max_up:
 				block_item()
 				return true
 

@@ -12,6 +12,7 @@ extends Control
 @onready var shop_hover_tip: TextureRect = %ShopHoverTip
 @onready var info_container: Control = %InfoContainer
 @onready var info_label: RichTextLabel = %InfoLabel
+@onready var barf_percentage: RichTextLabel = %BarfPerc
 
 
 @export var chair: Chair
@@ -27,6 +28,7 @@ func _ready() -> void:
 	var root = get_tree().root
 	chair.spins_complete.connect(spin_complete)
 	qte_controller.active.connect(toggle_spacebar_prompt)
+	chair.sig_ghost_save.connect(toggle_spacebar_prompt)
 	setup_barf_meter()
 	Global.money_added.connect(show_money_added_label)
 	Global.mult_increase.connect(mult_juice)
@@ -42,6 +44,7 @@ func _process(delta: float) -> void:
 	money_label.text = "$" + str(Global.money_tracker)
 	barf_meter.value = Global.barf_tracker
 	barf_meter.max_value = Global.barf_max
+	barf_percentage.text = str(int(Global.get_barf_percentage())) + "%"
 	multiplier_label.text = "x" + str(Global.curr_multiplier)
 	
 
@@ -91,8 +94,10 @@ func _on_spin_chair_pressed() -> void:
 		chair.spin_chair(int(spin_chair_input.text))
 
 
-func toggle_spacebar_prompt(show: bool):
+func toggle_spacebar_prompt(show: bool, is_ghost: bool = false):
 	spacebar_prompt.visible = show
+	if is_ghost:
+		%GhostSave.visible = show
 
 
 func show_info_label(text: String):

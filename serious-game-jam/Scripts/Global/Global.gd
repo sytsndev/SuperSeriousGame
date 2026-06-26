@@ -26,8 +26,8 @@ var barf_mult: float = 10
 
 
 #UPGRADES
-var up_chair_grease_count: int = 5
-var up_delayed_gratification: int = 1
+var up_chair_grease_count: int = 0
+var up_delayed_gratification: int = 0
 var up_multiplier: int = 1
 var up_ghost_kid: int = 1
 
@@ -86,6 +86,8 @@ func roll_ghost_kid_save() -> bool:
 func get_ghost_kid_save_chance() -> float:
 	if up_ghost_kid <= 0:
 		return 0.0
+	if up_ghost_kid == 1:
+		return 0.01
 	# each kid independently rolls 15%; saved if ANY of them hit
 	return 1.0 - pow(1.0 - ghost_kid_save_chance, up_ghost_kid)
 	
@@ -94,7 +96,7 @@ func get_spin_force() -> float:
 	var force = base_spin_force
 	return force
 	
-	
+		
 func get_friction() -> float:
 	var friction = base_friction
 	friction *= pow(0.85, up_chair_grease_count)
@@ -173,3 +175,22 @@ func get_barf_mult():
 
 func calc_spin_total():
 	return base_money_amount * apply_crowd() * curr_multiplier
+
+
+func get_barf_percentage():
+	var barf = barf_tracker / barf_max
+	return round(barf * 100)
+
+
+func get_up_count(name: String):
+	match name:
+		"Chair Grease":
+			return up_chair_grease_count
+		"Delayed Gratification":
+			return up_delayed_gratification
+		"Crowd":
+			return crowd
+		"Ghost Kid":
+			return up_ghost_kid
+		"Multiplier":
+			return up_multiplier

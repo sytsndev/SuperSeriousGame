@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cdc28ymktkh3e"]
+
+[ext_resource type="Script" uid="uid://cbimob4fx62p2" path="res://Scripts/Chair/ghost_kid.gd" id="1_i33tj"]
+[ext_resource type="PackedScene" uid="uid://c3jattgigmawp" path="res://Assets/WIP/Upgrades/GhostKidModel.glb" id="2_uyt85"]
+
+[node name="GhostKid" type="Node3D" unique_id=1942330446]
+script = ExtResource("1_i33tj")
+
+[node name="GhostKidModel" parent="." unique_id=1716340891 instance=ExtResource("2_uyt85")]
+transform = Transform3D(-0.2849539, -0.9578452, -0.036522537, -0.95848465, 0.28514412, -5.447657e-09, 0.010414183, 0.035006255, -0.99933267, 0.5309345, 0, 0.9847331)
