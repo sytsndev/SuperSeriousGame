@@ -12,14 +12,14 @@ var base_friction: float = 540.0
 ## AUDIO
 var audio_adjust: float = 0.0
 var music_adjust: float = 0.0
-var mult_default: float = -0.6
+var mult_default: float = 0.0
 var music_default: float = -30.0
 var chair_default: float = -27.5
 
 
 #MONEY
 var base_money_amount: float = 0.25
-var money_tracker: float = 0.0
+var money_tracker: float = 60.0
 var gross_money: float = 0.0
 
 
@@ -67,6 +67,7 @@ signal reset_multiplier
 
 
 func get_chair_audio():
+	print(audio_adjust)
 	if audio_adjust < -14.0:
 		return -100.0
 	return chair_default + audio_adjust
@@ -74,14 +75,14 @@ func get_chair_audio():
 
 func get_music_audio():
 	if music_adjust < -14.0:
-		return -100.0
+		return -1000.0
 	return music_default + music_adjust
 
 
 func get_mult_audio():
 	if audio_adjust < -14.0:
-		return -100.0
-	return music_default + audio_adjust
+		return -1000.0
+	return mult_default + audio_adjust
 
 
 func add_chair_grease():

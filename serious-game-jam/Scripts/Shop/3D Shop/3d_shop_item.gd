@@ -75,7 +75,6 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	
 	set_item_name()
 	if item_type == ItemType.PLAY or item_type == ItemType.EXIT:
 		name_label.visible = true 
@@ -182,7 +181,7 @@ func check_disabled():
 				block_item()
 				return true
 		ItemType.GHOST_KID:
-			if Global.up_delayed_gratification >= max_up:
+			if Global.up_ghost_kid >= max_up:
 				block_item()
 				return true
 		ItemType.MULTIPLIER:

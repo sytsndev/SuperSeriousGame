@@ -56,8 +56,8 @@ func spin_chair(force_override: float = -1.0):
 
 
 func _physics_process(delta: float) -> void:
-	chair_spin_sound.volume_db += Global.get_chair_audio()
-	mult_sound.volume_db += Global.get_mult_audio() 
+	chair_spin_sound.volume_db = Global.get_chair_audio()
+	mult_sound.volume_db = Global.get_mult_audio() 
 	if qte_finished and !is_spinning:
 		qte_finished = false
 	rotate_childe()
