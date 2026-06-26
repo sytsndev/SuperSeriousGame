@@ -4,10 +4,35 @@
 [ext_resource type="PackedScene" uid="uid://w4rssu76w6s6" path="res://Assets/Inherited Scenes/chair_3_0.tscn" id="2_bjvig"]
 [ext_resource type="AudioStream" uid="uid://dpfpdixvhcjbq" path="res://Assets/Sound/Chair/ChairSpin.wav" id="4_hushj"]
 [ext_resource type="PackedScene" uid="uid://77su8cq4ajy6" path="res://Assets/Inherited Scenes/kid_model_can_sit.tscn" id="4_u24av"]
+[ext_resource type="AudioStream" uid="uid://c0o7m6xe1xgj6" path="res://Assets/Sound/Chair/Barf.wav" id="5_hushj"]
 
-[node name="Chair" type="Node3D" unique_id=142225171 node_paths=PackedStringArray("chair_spin_sound", "child")]
+[sub_resource type="Curve" id="Curve_u24av"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_wb4oo"]
+curve = SubResource("Curve_u24av")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_s1fef"]
+spread = 28.868
+flatness = 1.0
+initial_velocity_min = 1.0
+initial_velocity_max = 2.0
+scale_min = 0.099999994
+scale_max = 0.14999999
+scale_curve = SubResource("CurveTexture_wb4oo")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qsuaf"]
+albedo_color = Color(0.43529412, 1, 0.3647059, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_khhxn"]
+material = SubResource("StandardMaterial3D_qsuaf")
+
+[node name="Chair" type="Node3D" unique_id=142225171 node_paths=PackedStringArray("chair_spin_sound", "barf_sound", "barf_system", "child")]
 script = ExtResource("1_bjvig")
 chair_spin_sound = NodePath("ChairNoise")
+barf_sound = NodePath("BarfNoise")
+barf_system = NodePath("Chair/KidModelCanSit/GPUParticles3D")
 path = "Chair/ChairTop"
 child = NodePath("Chair/KidModelCanSit")
 
@@ -16,6 +41,17 @@ child = NodePath("Chair/KidModelCanSit")
 [node name="KidModelCanSit" parent="Chair" unique_id=528032463 instance=ExtResource("4_u24av")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.07676798, -0.18494338)
 
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Chair/KidModelCanSit" unique_id=1226974473]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0.7585169, 0.18494338)
+amount = 30
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_s1fef")
+draw_pass_1 = SubResource("SphereMesh_khhxn")
+
 [node name="ChairNoise" type="AudioStreamPlayer3D" parent="." unique_id=843004115]
 stream = ExtResource("4_hushj")
+volume_db = -27.586
+
+[node name="BarfNoise" type="AudioStreamPlayer3D" parent="." unique_id=1567651601]
+stream = ExtResource("5_hushj")
 volume_db = -27.586

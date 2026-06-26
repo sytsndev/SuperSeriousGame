@@ -5,6 +5,8 @@ extends Node3D
 @export var camera_shake: CameraShake
 @export var mult_sound: AudioStreamPlayer3D
 @export var chair_spin_sound: AudioStreamPlayer3D
+@export var barf_sound: AudioStreamPlayer3D
+@export var barf_system: GPUParticles3D
 @export var ghost_kid: GhostKid
 
 @export var path: String
@@ -31,6 +33,8 @@ var accumulated_spins: float = 0.0 #total number of full 360 degree spins
 var spin_pitch: float = 1.0
 
 func _ready() -> void:
+	Global.barf_full.connect(start_barf)
+	stop_barf()
 	chair_top = get_node(path)
 	qte_controller.active.connect(qte_active)
 	qte_controller.ghost_save.connect(on_ghost_save) 
@@ -56,6 +60,7 @@ func spin_chair(force_override: float = -1.0):
 
 
 func _physics_process(delta: float) -> void:
+	chair_spin_sound.volume_db = Global.get_chair_audio()
 	chair_spin_sound.volume_db = Global.get_chair_audio()
 	mult_sound.volume_db = Global.get_mult_audio() 
 	if qte_finished and !is_spinning:
@@ -185,3 +190,15 @@ func multiplier_increase():
 func ghost_kid_anim_fin():
 	allow_ghost_input = true
 	sig_ghost_save.emit(true, true)
+
+
+func start_barf():
+	barf_system.emitting = true
+	barf_sound.volume_db = Global.get_barf_audio()
+	barf_sound.play()
+	await get_tree().create_timer(2.0).timeout
+	stop_barf()
+
+
+func stop_barf():
+	barf_system.emitting = false
