@@ -20,7 +20,7 @@ var chair_default: float = -27.5
 
 #MONEY
 var base_money_amount: float = 0.25
-var money_tracker: float =0.0
+var money_tracker: float = 50.0
 var gross_money: float = 0.0
 
 
@@ -30,21 +30,21 @@ var curr_multiplier: float = 0.0
 
 
 #amount of people in the crowd (money multiplier)
-var crowd: int = 0 ## Crowd max should be 10
+var crowd: int = 4 ## Crowd max should be 10
 var crowd_max: int = 10
 
 
 #BARF
 var barf_tracker: float = 0.0
-var barf_max: float = 36000
+var barf_max: float = 108000
 var barf_mult: float = 10
 
 
 #UPGRADES
-var up_chair_grease_count: int = 0
-var up_delayed_gratification: int = 0
-var up_multiplier: int = 1
-var up_ghost_kid: int = 1
+var up_chair_grease_count: int = 8
+var up_delayed_gratification: int = 3
+var up_multiplier: int = 4
+var up_ghost_kid: int = 2
 
 #UPGRADE MULTS
 var mult_chair_grease: float = 0.01

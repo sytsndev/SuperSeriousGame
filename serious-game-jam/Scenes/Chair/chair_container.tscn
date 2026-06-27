@@ -69,7 +69,6 @@ camera_controller = NodePath("../../CameraShake/Camera3D")
 item_name = "Crowd"
 item_info = "Crowd upgrade will increase the amount of people in your crowd. for each person in your crowd you have a chance to get paid after a spin.This is limited to 10 crowd upgrades "
 item_type = 2
-price = 50.0
 max_up = 10
 mesh_path = "res://Assets/WIP/Upgrades/Crowd.glb"
 init_rot = Vector3(0, 0, 0)

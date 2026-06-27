@@ -46,7 +46,6 @@ func spawn_child(index: int = -1):
 func _on_music_value_changed(value: float) -> void:
 	Global.music_adjust = value
 	music.volume_db = Global.get_music_audio() 
-	
 
 
 func _on_volume_value_changed(value: float) -> void:

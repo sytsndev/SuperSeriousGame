@@ -117,6 +117,7 @@ func on_click():
 		ItemType.CROWD:
 			Global.add_crowd()
 			Global.money_tracker -= price
+			get_crowd_price()
 		ItemType.MULTIPLIER:
 			Global.add_mutliplier()
 			Global.money_tracker -= price
@@ -248,6 +249,17 @@ func get_price():
 			price = 100.0
 		else:
 			price += 50
+
+
+func get_crowd_price():
+		if Global.crowd == 1:
+			price = 5.0
+		elif Global.crowd == 2:
+			price = 10
+		elif Global.crowd == 3:
+			price = 15
+		else:
+			price += 25
 
 
 func play_hover_sound():
